@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ǰ��, �滭, ʳ�� " />
+  <meta name="keywords" content="前端,css," />
 
 
 
@@ -84,13 +84,16 @@
 
 
 
+<meta name="description" content="三种display的方式，以及块级元素、行内元素的总结。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="inline inlineblock block">
 <meta property="og:url" content="http://yoursite.com/2016/09/05/inline-inlineblock-block/index.html">
 <meta property="og:site_name" content="阿炸炸炸酱の饮食记录">
-<meta property="og:updated_time" content="2016-09-05T05:19:12.767Z">
+<meta property="og:description" content="三种display的方式，以及块级元素、行内元素的总结。">
+<meta property="og:updated_time" content="2016-09-05T12:25:44.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="inline inlineblock block">
+<meta name="twitter:description" content="三种display的方式，以及块级元素、行内元素的总结。">
 
 
 
@@ -251,6 +254,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -273,7 +295,10 @@
       
 
       
-        
+        <style type="text/css" id="wiz_todo_style_id" wiz_link_version="01.00.09">.wiz-todo, .wiz-todo-img {width: 16px; height: 16px; cursor: default; padding: 0 10px 0 2px; vertical-align: -10%;-webkit-user-select: none;} .wiz-todo-label { display: inline-block; padding-top: 7px; padding-bottom: 6px; line-height: 1.5;} .wiz-todo-label-checked {  color: #666;} .wiz-todo-label-unchecked {text-decoration: initial;} .wiz-todo-completed-info {padding-left: 44px; display: inline-block; } .wiz-todo-avatar { width:20px; height: 20px; vertical-align: -20%; margin-right:10px; border-radius: 2px;} .wiz-todo-account, .wiz-todo-dt { color: #666; }</style>
+
+<p><style id="wiz_custom_css">        html, body {            font-size: 15px;        }        body {            font-family: Helvetica, ‘Hiragino Sans GB’, ‘微软雅黑’, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;            line-height: 1.6;            margin: 0;            padding: 20px 36px;            padding: 1.33rem 2.4rem;        }        h1, h2, h3, h4, h5, h6 {            margin: 20px 0 10px;            margin: 1.33rem 0 0.667rem;            padding: 0;            font-weight: bold;        }        h1 {            font-size: 21px;            font-size: 1.4rem;        }        h2 {            font-size: 20px;            font-size: 1.33rem;        }        h3 {            font-size: 18px;            font-size: 1.2rem;        }        h4 {            font-size: 17px;            font-size: 1.13rem;        }        h5 {            font-size: 15px;            font-size: 1rem;        }        h6 {            font-size: 15px;            font-size: 1rem;            color: #777777;            margin: 1rem 0;        }        div, p, ul, ol, dl, li {            margin: 0;        }        blockquote, table, pre, code {            margin: 8px 0;        }        ul, ol {            padding-left: 32px;            padding-left: 2.13rem;        }        blockquote {            padding: 0 12px;            padding: 0 0.8rem;        }        blockquote &gt; :first-child {            margin-top: 0;        }        blockquote &gt; :last-child {            margin-bottom: 0;        }        img {            border: 0;            max-width: 100%;            height: auto !important;            margin: 2px 0;        }        table {            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        td {            padding: 4px 8px;            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        @media screen and (max-width: 660px) {            body {                padding: 20px 18px;                padding: 1.33rem 1.2rem;            }        }        @media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {            html, body {                font-size: 17px;            }            body {                line-height: 1.7;                padding: 0.75rem 0.9375rem;                color: #353c47;            }            h1 {                font-size: 2.125rem;            }            h2 {                font-size: 1.875rem;            }            h3 {                font-size: 1.625rem;            }            h4 {                font-size: 1.375rem;            }            h5 {                font-size: 1.125rem;            }            h6 {                color: inherit;            }            ul, ol {                padding-left: 2.5rem;            }            blockquote {                padding: 0 0.9375rem;            }        }</style><style name="wiz_tmp_editor_style">html, body {    font-size: 15px;}body {    font-family: Helvetica, ‘Hiragino Sans GB’, 微软雅黑, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;    line-height: 1.6;    color: ;    background-color: ;    margin: 0;    padding: 16px 20px;}h1, h2, h3, h4, h5, h6 {    margin: 20px 0 10px;    margin: 1.33rem 0 0.667rem;    padding: 0;    font-weight: bold;}h1 {    font-size: 21px;    font-size: 1.4rem;}h2 {    font-size: 20px;    font-size: 1.33rem;}h3 {    font-size: 18px;    font-size: 1.2rem;}h4 {    font-size: 17px;    font-size: 1.13rem;}h5 {    font-size: 15px;    font-size: 1rem;}h6 {    font-size: 15px;    font-size: 1rem;    color: #777777;    margin: 1rem 0;}div, p, ul, ol, dl, li {    margin: 0;}blockquote, table, pre, code{    margin: 8px 0;}ul, ol {    padding-left: 32px;    padding-left: 2.13rem;}blockquote {    border-left: 4px solid #dddddd;    padding: 0 12px;    padding: 0 0.8rem;}blockquote &gt; :first-child {    margin-top: 0;}blockquote &gt; :last-child {    margin-bottom: 0;}img {    border: 0;    max-width: 100%;    height: auto !important;    margin: 2px 0;}table {    border-collapse: collapse;    border: 1px solid #bbbbbb;}td {    padding:4px 8px;    border-collapse: collapse;    border: 1px solid #bbbbbb;}@media screen and (max-width: 660px) {    body {        padding: 20px 18px;        padding: 1.33rem 1.2rem;    }}@media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {    html, body {        font-size: 17px;    }    body {        line-height: 1.7;        padding: 0.75rem 0.9375rem;        color: #353c47;    }    h1 {        font-size: 2.125rem;    }    h2 {        font-size: 1.875rem;    }    h3 {        font-size: 1.625rem;    }    h4 {        font-size: 1.375rem;    }    h5 {        font-size: 1.125rem;    }    h6 {        color: inherit;    }    ul, ol {        padding-left: 2.5rem;    }    blockquote {        padding: 0 0.9375rem;    }}</style><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editor.css" wiz_style="unsave" charset="utf-8"><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\scrollbar.css" wiz_style="unsave" charset="utf-8"><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\utils.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\localize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\wizEditor.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\checklist\todo.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\imageresize\dragresize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editorHelper.js" wiz_style="unsave" charset="utf-8"></script></p>
+<body style=""><div class="postTitle" style="box-sizing: border-box; font-size: 14.7px; font-weight: bold; margin-bottom: 10px; color: rgb(75, 75, 75); font-family: Verdana, Arial, Helvetica, sans-serif; widows: 1; background-color: rgb(255, 255, 255);"><h1 style="margin-top: 10px; margin-bottom: 10px; font-size: 14.7px; color: rgb(102, 102, 102); box-sizing: border-box;"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/jdonson/archive/2011/06/10/2077932.html" style="box-sizing: border-box; text-decoration: none; color: rgb(52, 104, 164);" target="_blank" rel="external">display:inline、block、inline-block的区别</a></h1></div><div id="cnblogs_post_body" style="box-sizing: border-box; margin-bottom: 20px; word-break: break-word; color: rgb(75, 75, 75); font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.8px; widows: 1; background-color: rgb(255, 255, 255);"><p style="box-sizing: border-box; margin: 10px auto;">display:block就是将元素显示为块级元素.</p><p style="box-sizing: border-box; margin: 10px auto;">　　block元素的特点是：<br style="box-sizing: border-box;">　　总是在新行上开始；<br style="box-sizing: border-box;">　　高度，行高以及顶和底边距都可控制；<br style="box-sizing: border-box;">　　宽度缺省是它的容器的100%，除非设定一个宽度<br style="box-sizing: border-box;">　　&lt;div&gt;, &lt;p&gt;, &lt;h1&gt;, &lt;form&gt;, &lt;ul&gt; 和 &lt;li&gt;是块元素的例子。</p><p style="box-sizing: border-box; margin: 10px auto;">　　display:inline就是将元素显示为行内元素.</p><p style="box-sizing: border-box; margin: 10px auto;">　　inline元素的特点是：&nbsp;<br style="box-sizing: border-box;">　　和其他元素都在一行上；<br style="box-sizing: border-box;">　　高，行高及顶和底边距不可改变；<br style="box-sizing: border-box;">　　宽度就是它的文字或图片的宽度，不可改变。<br style="box-sizing: border-box;">　　&lt;span&gt;, &lt;a&gt;, &lt;label&gt;, &lt;input&gt;, &lt;img&gt;, &lt;strong&gt; 和&lt;em&gt;是inline元素的例子。</p><p style="box-sizing: border-box; margin: 10px auto;">　　inline和block可以控制一个元素的行宽高等特性，需要切换的情况如下：</p><p style="box-sizing: border-box; margin: 10px auto;">　　让一个inline元素从新行开始；<br style="box-sizing: border-box;">　　让块元素和其他元素保持在一行上；<br style="box-sizing: border-box;">　　控制inline元素的宽度（对导航条特别有用）；<br style="box-sizing: border-box;">　　控制inline元素的高度；<br style="box-sizing: border-box;">　　无须设定宽度即可为一个块元素设定与文字同宽的背景色。</p><p style="box-sizing: border-box; margin: 10px auto;">　　display:inline-block将对象呈递为内联对象，但是对象的内容作为块对象呈递。旁边的内联对象会被呈递在同一行内，允许空格。</p><p style="box-sizing: border-box; margin: 10px auto;">　　inline-block的元素特点：</p><p style="box-sizing: border-box; margin: 10px auto;">　　将对象呈递为内联对象，但是对象的内容作为块对象呈递。旁边的内联对象会被呈递在同一行内，允许空格。(准确地说，应用此特性的元素呈现为内联对象，周围元素保持在同一行，但可以设置宽度和高度地块元素的属性)</p><p style="box-sizing: border-box; margin: 10px auto;">　　并不是所有浏览器都支持此属性，目前支持的浏览器有：Opera、Safari在IE中对内联元素使用display:inline-block，IE是不识别的，但使用display:inline-block在IE下会触发layout，从而使内联元素拥有了display:inline-block属性的表症。从上面的这个分析，也不难理解为什么IE下，对块元素设置display:inline-block属性无法实现inline-block的效果。这时块元素仅仅是被display:inline-block触发了layout，而它本就是行布局，所以触发后，块元素依然还是行布局，而不会如Opera中块元素呈递为内联对象。</p><p style="box-sizing: border-box; margin: 10px auto;">　　IE下块元素如何实现display:inline-block的效果？</p><p style="box-sizing: border-box; margin: 10px auto;">　　有两种方法：<br style="box-sizing: border-box;">　　1、先使用display:inline-block属性触发块元素，然后再定义display:inline，让块元素呈递为内联对象（两个display要先后放在两个CSS声明中才有效果，这是IE的一个经典bug，如果先定义了display:inline-block，然后再将display设回inline或block，layout不会消失）。代码如下（…为省略的其他属性内容）：</p><p style="box-sizing: border-box; margin: 10px auto;">　　div {display:inline-block;…}&nbsp;<br style="box-sizing: border-box;">　　div {display:inline;}</p><p style="box-sizing: border-box; margin: 10px auto;">　　2、直接让块元素设置为内联对象呈递（设置属性display:inline），然后触发块元素的layout（如：zoom:1等）。代码如下：</p><p style="box-sizing: border-box; margin: 10px auto;">　　div {display:inline; zoom:1;…}</p><p style="box-sizing: border-box; margin: 10px auto;">　　以下用个例子来说明三者的区别和用<br style="box-sizing: border-box;">&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" style="box-sizing: border-box; color: rgb(52, 104, 164);" target="_blank" rel="external">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a>“&gt;<br style="box-sizing: border-box;">&lt;html xmlns=”<a href="http://www.w3.org/1999/xhtml" style="box-sizing: border-box; color: rgb(52, 104, 164);" target="_blank" rel="external">http://www.w3.org/1999/xhtml</a>“&gt;<br style="box-sizing: border-box;">&lt;head&gt;<br style="box-sizing: border-box;">&lt;meta http-equiv=”Content-Type” content=”text/html; charset=gb2312” /&gt;<br style="box-sizing: border-box;">&lt;title&gt;display:inline、block、inline-block的区别&lt;/title&gt;<br style="box-sizing: border-box;">&lt;/head&gt;<br style="box-sizing: border-box;">&lt;style&gt;<br style="box-sizing: border-box;">div,span{background-color:green;margin:5px;border:1px solid #333;padding:5px;height:52px;color:#fff;}<br style="box-sizing: border-box;">.b{display:block;}<br style="box-sizing: border-box;">.i{display:inline;}<br style="box-sizing: border-box;">div.ib{display:inline-block;}<br style="box-sizing: border-box;">div.ib{display:inline;}<br style="box-sizing: border-box;">a.ib{display:inline-block;}<br style="box-sizing: border-box;">a.ib{display:block;}<br style="box-sizing: border-box;">span.v{padding:0;margin:0;border:0;vertical-align:middle;height:100%}<br style="box-sizing: border-box;">&lt;/style&gt;<br style="box-sizing: border-box;">&lt;body&gt;<br style="box-sizing: border-box;">&lt;div&gt;div display:block&lt;/div&gt;<br style="box-sizing: border-box;">&lt;div class=”i”&gt;div display:inline&lt;/div&gt;<br style="box-sizing: border-box;">&lt;div class=”ib”&gt;div display:inline-block&lt;/div&gt;<br style="box-sizing: border-box;">&lt;span&gt;span display:inline&lt;/span&gt;<br style="box-sizing: border-box;">&lt;span class=”b”&gt;span display:block&lt;/span&gt;<br style="box-sizing: border-box;">&lt;span&gt;&lt;a class=”ib”&gt;a display:block&lt;/a&gt;&lt;/span&gt;&lt;br /&gt;<br style="box-sizing: border-box;">&lt;div&gt;&lt;span class=”v”&gt;&lt;/span&gt;vertical-align:middle&lt;/div&gt;<br style="box-sizing: border-box;">&lt;/body&gt;<br style="box-sizing: border-box;">&lt;/html&gt;</p><br><div style="color:gray"><small>来源：&nbsp;<a href="http://www.cnblogs.com/jdonson/archive/2011/06/10/2077932.html" target="_blank" rel="external">http://www.cnblogs.com/jdonson/archive/2011/06/10/2077932.html</a></small></div></div></body>
       
     </div>
 
@@ -292,6 +317,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+        </div>
       
 
       
@@ -376,7 +409,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -393,7 +426,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -442,7 +475,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">display:inline、block、inline-block的区别</span></a></li></ol></div>
             
           </div>
         </section>
