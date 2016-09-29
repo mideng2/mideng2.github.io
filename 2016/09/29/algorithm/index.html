@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="node.js,后端," />
+  <meta name="keywords" content="algorithm,js,前端," />
 
 
 
@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。">
+<meta name="description" content="排序算法总结，js实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node.js win7-64环境安装及基本操作">
-<meta property="og:url" content="http://yoursite.com/2016/09/03/nodejs-env/index.html">
+<meta property="og:title" content="algorithm">
+<meta property="og:url" content="http://yoursite.com/2016/09/29/algorithm/index.html">
 <meta property="og:site_name" content="阿炸炸炸酱の饮食记录">
-<meta property="og:description" content="Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。">
-<meta property="og:image" content="http://g.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=278308933bdbb6fd3156ed74684dc07d/42a98226cffc1e17fcdb30594890f603738de976.jpg">
-<meta property="og:updated_time" content="2016-09-05T05:08:18.593Z">
+<meta property="og:description" content="排序算法总结，js实现">
+<meta property="og:updated_time" content="2016-09-29T04:11:19.924Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node.js win7-64环境安装及基本操作">
-<meta name="twitter:description" content="Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。">
-<meta name="twitter:image" content="http://g.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=278308933bdbb6fd3156ed74684dc07d/42a98226cffc1e17fcdb30594890f603738de976.jpg">
+<meta name="twitter:title" content="algorithm">
+<meta name="twitter:description" content="排序算法总结，js实现">
 
 
 
@@ -116,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/03/nodejs-env/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/29/algorithm/"/>
 
-  <title> node.js win7-64环境安装及基本操作 | 阿炸炸炸酱の饮食记录 </title>
+  <title> algorithm | 阿炸炸炸酱の饮食记录 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +236,7 @@
             
             
               
-                node.js win7-64环境安装及基本操作
+                algorithm
               
             
           </h1>
@@ -250,8 +248,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-03T15:13:09+08:00" content="2016-09-03">
-              2016-09-03
+            <time itemprop="dateCreated" datetime="2016-09-29T11:03:55+08:00" content="2016-09-29">
+              2016-09-29
             </time>
           </span>
 
@@ -264,8 +262,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/后端/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -295,48 +293,59 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://g.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=278308933bdbb6fd3156ed74684dc07d/42a98226cffc1e17fcdb30594890f603738de976.jpg" rel="gallery_citntq9dm000wicqtk14a9l0q"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://g.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=278308933bdbb6fd3156ed74684dc07d/42a98226cffc1e17fcdb30594890f603738de976.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
-        <p></p><h3>概述</h3><br>1.node.js不同版本 api不同<br>2.版本号：偶数为稳定版，奇数为不稳定版，建议选择最新的稳定版<p></p>
-<p></p><h3>模块</h3><br>1.exports 对象 用来暴露方法<br>2.require 函数来导入 模块<br>3.把属性赋予exports的结果和赋予module.exports是一样的<p></p>
-<p></p><h3>方法</h3><br>1.URI 是资源标识规范，URL是资源定位标记   url是uri的子集<br>2.url.parse 解析url地址，将其解析成一个对象<br>    url.format 将一个url对象，格式化成为一个url字符串<br>    url.resolve 也是用来解析的，有两个参数       通过域名与文件路径合成地址串<br>3.<a href="http://blog.csdn.net/fh13760184/article/details/6840696" target="_blank" rel="external">http://blog.csdn.net/fh13760184/article/details/6840696</a>    nodejs中文api<br>url.parse()<br><img src="/images/IMGnodejs-env/ac0e242a-a892-4ceb-b5a6-ebedf140cf7b.png"><br><img src="/images/IMGnodejs-env/a8cdcd25-ed2e-4663-9b01-a6a1f61c9527.png"><p></p>
-<p>url.format()<br><img src="/images/IMGnodejs-env/d51f4f89-62a8-4ff5-a158-2ed0bc49cbe7.png"><br>url.resolve()<br><img src="/images/IMGnodejs-env/c810e3b8-bf3b-4fc9-a772-cb6e759e383e.png"><br>url.parse()<br>query变成了一个对象<br><img src="/images/IMGnodejs-env/d34fb029-4700-4112-9f25-273184e4e6c5.png"></p>
-<p>url.parse()如果不知道协议，用三个参数</p>
-<p>在nodejs输入框中输入比较好<br>4.queryString  把序列化对象 格式化为 字符串</p>
-<p>5.转意、反转意</p>
-<p>6.http知识填坑<br>http客户端发起请求，创建端口<br>http服务端在端口监听客户端请求<br>http服务端向客户端返回状态和内容</p>
-<p>nodejs 与v8的关系<br><a href="http://www.tuicool.com/articles/2YvY3eB" target="_blank" rel="external">http://www.tuicool.com/articles/2YvY3eB</a><br>V8是Google主导的一个开源项目，它是Chrome浏览器的核心。它首次公开发布是在2008年9月2日，这天也是Chrome浏览器的首个版本发布。它是浏览器性能的一次飞跃，它将浏览器技术推向了一个全新的高度。它使用C++写成，它革命性的创举是将Javascript源码预编译为机器码，而不是像以前那样将Javascript翻译为字节码，然后在运行时使用JIT动态执行代码。<br>Java编译后是字节码，C/C++以前全都是是机器码。<br>电脑只能运行机器码。Java在运行的时候把字节码变成机器码。<br>C/C++在编译的时候直接编译成机器码。</p>
-<p>输入网址回车之后：<br>1.Chrome搜索自身的DNS<br>2.搜索操作系统自身的DNS缓存<br>3.读取本地的HOST文件<br>4.浏览器发起一个DNS的一个系统调用（<br>①宽带运营商服务器查看本身的缓存<br>②运营商服务器发起一个迭代DNS解析请求<br>）<br>5.浏览器获得域名对应的IP地址后，发起HTTP”三次握手”<br>6.TCP/IP连接建立起来后，浏览器就可以向服务器发送HTTP请求了<br>7.服务器端接收请求，根据路径参数，经过后端的一些处理，把处理后的一个结果的数据返还给浏览器<br>8.浏览器解析和渲染页面，里面的JS、CSS、图片静态资源同样经过上面的主要的7个步骤</p>
-<p>7、http相关知识举例<br>用谷歌看http信息<br>network—》timing—》stalled等待时间</p>
-<p>方法：<br>get 主流网站 输入网址访问一般都是get方式<br>post 表单提交 新建用户等 新增资源<br>put 更新资源 换头像<br>delete<br>head 与get有点像<br>trace<br>options</p>
-<p>状态码<br>1xx 请求已经接受 继续处理<br>2xx 请求已经成功处理掉了<br>3xx 重定向 需要跳转<br>4xx 客户端错误<br>5xx 服务器端错误<br>具体常用状态码请自行百度</p>
-<p>8、</p>
-<p>1）异步：<br>    settimeout<br>    setinterval<br>2）IO<br>    磁盘的写入读出<br>3）阻塞<br>    非阻塞：等待过程中可以做别的</p>
-<p>9.上下文和作用域<br>作用域：访问变量或函数的能力，局部作用域可以访问其外部或全局作用域下的变量或函数，外部或全局作用域访问不了局部作用域。JS是函数级作用域；<br>上下文：this变量的值及其指向。this ：指向谁，可以打印出来看看<br>函数调用不同this指向不同：1.作为对象方法，this指向调用的对象自身 2.作为函数调用，this指向全局</p>
-<p>作用域和上下文不同，作用域和变量的访问有关系，上下文跟this有关系。</p>
-<p>call apply 改变this指定的对象的引用</p>
-<p>b.setMessage.call(a,”a的消息”)：a执行时，上下文对象调用b对象的setMessage方法，相当于a.setMessage(“a的消息”)。<br>另外，call和apply的区别在于：call将参数依次传递给借用的方法作参数；而apply直接将这些参数放到一个数组中再传递。</p>
-<p>全局变量使用this，指向函数拥有者<br>构造函数使用this，指向新构建好的函数，实例对象。</p>
-<p>call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。<br>二者的作用完全一样，只是接受参数的方式不太一样。<br>例如，有一个函数 func1 定义如下：<br>var func1 = function(arg1, arg2) {};<br>就可以通过 func1.call(this, arg1, arg2); 或者 func1.apply(this, [arg1, arg2]); 来调用。其中 this 是你想指定的上下文，他可以任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。</p>
-<p>JavaScript 中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时，用 call，而不确定的时候，用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个数组来便利所有的参数。</p>
-<p>10.http性能测试<br>安装apache ab工具  <a href="http://jingyan.baidu.com/article/29697b912f6539ab20de3cf8.html" target="_blank" rel="external">http://jingyan.baidu.com/article/29697b912f6539ab20de3cf8.html</a><br>在apache/bin/目录下执行 ab -n1000 -c10 <a href="http://www.imooc.com/video/7964" target="_blank" rel="external">http://www.imooc.com/video/7964</a>    进行测试 </p>
-<p>1、cheerio可以理解成一个 Node.js 版的 jquery，对语法不明白的先去学下jquery。<br>2、视屏中慕课网的html源码out了，class名之类的变了。<br>3、video的class名通过find找不到，不明白为什么，换成找标签可以。</p>
+        <p>/**</p>
+<ul>
+<li><p>Created by Administrator on 2016/9/5.<br>*/<br>window.onload = function () {<br> var a = [1,5,8,3,5,7,2,8,9.5,10,7,12,7];<br> //var bubble = new BubbleSort(a);<br> //console.log(bubble.sort());</p>
+<p>//console.log(quickSort(a)) ;</p>
+<p> var choose = new ChooseSort(a);<br> console.log(choose.sort());<br>}</p>
+</li>
+</ul>
+<p>/<em>冒泡排序算法</em>/<br>function BubbleSort(arr){<br>    this.arr = arr;<br>    this.length = this.arr.length;<br>}</p>
+<p>BubbleSort.prototype.swap = function(a,b){</p>
+<pre><code>var temp = this.arr[a];
+this.arr[a] = this.arr[b];
+this.arr[b] = temp;
+</code></pre><p>}<br>BubbleSort.prototype.sort = function(){<br>    for(var i = 0;i<this.length-1;i++){ for(var="" j="0;j<this.length-i-1;j++){" if(this.arr[j]="">this.arr[j+1]){<br>                this.swap(j,j+1);<br>                console.log(“change “+this.arr[j]+” and “+this.arr[j+1]);<br>            }<br>        }<br>    }<br>    return this.arr;<br>}</this.length-1;i++){></p>
+<p>/<em>快速排序算法</em>/<br>var quickSort = function(arr) {<br>    console.log(“—————“);<br>    console.log(arr);<br>    if (arr.length &lt;= 1) { return arr; }<br>    var pivotIndex = Math.floor(arr.length / 2);<br>    var pivot = arr.splice(pivotIndex, 1)[0];<br>    var left = [];<br>    var right = [];<br>    for (var i = 0; i &lt; arr.length; i++){<br>        if (arr[i] &lt; pivot) {<br>            left.push(arr[i]);<br>        } else {<br>            right.push(arr[i]);<br>        }<br>        console.log(“—————“);<br>        console.log(pivot);<br>        console.log(arr);<br>        console.log(left);<br>        console.log(right);<br>    }</p>
+<pre><code>return quickSort(left).concat([pivot], quickSort(right));
+</code></pre><p>};</p>
+<p>/<em>选择排序</em>/<br>function ChooseSort(arr){<br>    this.arr = arr;<br>    this.length = this.arr.length;<br>}</p>
+<p>ChooseSort.prototype.swap = function(a,b){<br>    var tmp = this.arr[a];<br>    this.arr[a] = this.arr[b];<br>    this.arr[b] = tmp;<br>}</p>
+<p>ChooseSort.prototype.sort = function(){</p>
+<pre><code>//哇咔咔经测试，j=i+1是木有问题的！
+for(var i = 0;i&lt;this.length-1;i++){
+    for(var j = i+1;j&lt;this.length;j++){
+        if(this.arr[i]&gt;this.arr[j]){
+            this.swap(i,j);
+        }
+    }
+}
+return this.arr;
+</code></pre><p>}</p>
+<p>/<em>插入排序</em>/<br>function  InsertSort(arr){<br>    this.arr = arr;<br>    this.length = this.arr.length;<br>}</p>
+<p>InsertSort.prototype.sort = function(){<br>    var i = 0;<br>    for(i=0;i&lt;this.length-1;i++){</p>
+<pre><code>    var temp = this.arr[i+1];
+    var j = i;
+    /*console.log(&apos;i:&apos;+i)
+    console.log(&apos;j:&apos;+j)
+    console.log(&apos;arr[j]:&apos;+this.arr[j])
+    console.log(&apos;temp:&apos;+temp)
+    console.log(this.arr)*/
+    while(j&gt;=0&amp;&amp;this.arr[j]&gt;temp){
+        this.arr[j+1] = this.arr[j];
+        /*console.log(this.arr[j])
+        console.log(this.arr)*/
+        j--
+    }
+    this.arr[j+1]=temp;
+}
+return this.arr;
+</code></pre><p>}</p>
+<p>var insertSort = new InsertSort([1,3,7,2,9,2,76,2,7,8]);<br>console.log(insertSort.sort())</p>
+<p>/<em>再写一遍插入算法</em>/<br>function InsertSortn (arr){<br>    this.arr = arr;<br>    this.length = this.arr.length;<br>}<br>InsertSortn.prototype.sort = function(){<br>    for(var i =1;i<this.length;i++){ var="" temp="this.arr[i];" j="i;" while="" (j="">0&amp;&amp;this.arr[j-1]&gt;temp){<br>            this.arr[j] = this.arr[j-1];<br>            j–;<br>        }<br>        this.arr[j] = temp;<br>    }<br>    return this.arr;<br>}</this.length;i++){></p>
+<p>var insert = new  InsertSortn([4,7,2,9,4,7,0,2,5,8])<br>console.log(insert.sort())</p>
 
       
     </div>
@@ -359,9 +368,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/node-js/" rel="tag">#node.js</a>
+            <a href="/tags/algorithm/" rel="tag">#algorithm</a>
           
-            <a href="/tags/后端/" rel="tag">#后端</a>
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
           
         </div>
       
@@ -370,13 +381,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/05/js-event/" rel="next" title="js-event">
+                <i class="fa fa-chevron-left"></i> js-event
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/05/css3简单介绍/" rel="prev" title="css3简单介绍">
-                css3简单介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,7 +521,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
