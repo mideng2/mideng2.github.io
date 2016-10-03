@@ -1,0 +1,613 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mongodb,后端,nodejs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/straw.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="nodejs处理请求并操作数据库测试总算完成，验证成功的那一刻我的内心是澎湃的，喝喝。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb3.0基本使用">
+<meta property="og:url" content="http://yoursite.com/2016/10/03/mongodb3-0基本使用/index.html">
+<meta property="og:site_name" content="阿炸炸炸酱の饮食记录">
+<meta property="og:description" content="nodejs处理请求并操作数据库测试总算完成，验证成功的那一刻我的内心是澎湃的，喝喝。">
+<meta property="og:image" content="http://yoursite.com/da516839-b736-4a7e-9049-6b9a744a3a3b_128_files/0a8da55b-d767-451b-a9d6-655a272a7266.png">
+<meta property="og:updated_time" content="2016-10-03T14:27:48.979Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb3.0基本使用">
+<meta name="twitter:description" content="nodejs处理请求并操作数据库测试总算完成，验证成功的那一刻我的内心是澎湃的，喝喝。">
+<meta name="twitter:image" content="http://yoursite.com/da516839-b736-4a7e-9049-6b9a744a3a3b_128_files/0a8da55b-d767-451b-a9d6-655a272a7266.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/03/mongodb3-0基本使用/"/>
+
+  <title> mongodb3.0基本使用 | 阿炸炸炸酱の饮食记录 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿炸炸炸酱の饮食记录</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                mongodb3.0基本使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-03T22:11:30+08:00" content="2016-10-03">
+              2016-10-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style type="text/css" id="wiz_todo_style_id" wiz_link_version="01.00.09">.wiz-todo, .wiz-todo-img {width: 16px; height: 16px; cursor: default; padding: 0 10px 0 2px; vertical-align: -10%;-webkit-user-select: none;} .wiz-todo-label { display: inline-block; padding-top: 7px; padding-bottom: 6px; line-height: 1.5;} .wiz-todo-label-checked {  color: #666;} .wiz-todo-label-unchecked {text-decoration: initial;} .wiz-todo-completed-info {padding-left: 44px; display: inline-block; } .wiz-todo-avatar { width:20px; height: 20px; vertical-align: -20%; margin-right:10px; border-radius: 2px;} .wiz-todo-account, .wiz-todo-dt { color: #666; }</style>
+
+
+
+
+
+<p><style id="wiz_custom_css">        html, body {            font-size: 15px;        }        body {            font-family: Helvetica, ‘Hiragino Sans GB’, ‘微软雅黑’, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;            line-height: 1.6;            margin: 0;            padding: 20px 36px;            padding: 1.33rem 2.4rem;        }        h1, h2, h3, h4, h5, h6 {            margin: 20px 0 10px;            margin: 1.33rem 0 0.667rem;            padding: 0;            font-weight: bold;        }        h1 {            font-size: 21px;            font-size: 1.4rem;        }        h2 {            font-size: 20px;            font-size: 1.33rem;        }        h3 {            font-size: 18px;            font-size: 1.2rem;        }        h4 {            font-size: 17px;            font-size: 1.13rem;        }        h5 {            font-size: 15px;            font-size: 1rem;        }        h6 {            font-size: 15px;            font-size: 1rem;            color: #777777;            margin: 1rem 0;        }        div, p, ul, ol, dl, li {            margin: 0;        }        blockquote, table, pre, code {            margin: 8px 0;        }        ul, ol {            padding-left: 32px;            padding-left: 2.13rem;        }        blockquote {            padding: 0 12px;            padding: 0 0.8rem;        }        blockquote &gt; :first-child {            margin-top: 0;        }        blockquote &gt; :last-child {            margin-bottom: 0;        }        img {            border: 0;            max-width: 100%;            height: auto !important;            margin: 2px 0;        }        table {            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        td {            padding: 4px 8px;            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        @media screen and (max-width: 660px) {            body {                padding: 20px 18px;                padding: 1.33rem 1.2rem;            }        }        @media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {            html, body {                font-size: 17px;            }            body {                line-height: 1.7;                padding: 0.75rem 0.9375rem;                color: #353c47;            }            h1 {                font-size: 2.125rem;            }            h2 {                font-size: 1.875rem;            }            h3 {                font-size: 1.625rem;            }            h4 {                font-size: 1.375rem;            }            h5 {                font-size: 1.125rem;            }            h6 {                color: inherit;            }            ul, ol {                padding-left: 2.5rem;            }            blockquote {                padding: 0 0.9375rem;            }        }</style><style name="wiz_tmp_editor_style">html, body {    font-size: 15px;}body {    font-family: Helvetica, ‘Hiragino Sans GB’, 微软雅黑, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;    line-height: 1.6;    color: ;    background-color: ;    margin: 0;    padding: 16px 20px;}h1, h2, h3, h4, h5, h6 {    margin: 20px 0 10px;    margin: 1.33rem 0 0.667rem;    padding: 0;    font-weight: bold;}h1 {    font-size: 21px;    font-size: 1.4rem;}h2 {    font-size: 20px;    font-size: 1.33rem;}h3 {    font-size: 18px;    font-size: 1.2rem;}h4 {    font-size: 17px;    font-size: 1.13rem;}h5 {    font-size: 15px;    font-size: 1rem;}h6 {    font-size: 15px;    font-size: 1rem;    color: #777777;    margin: 1rem 0;}div, p, ul, ol, dl, li {    margin: 0;}blockquote, table, pre, code{    margin: 8px 0;}ul, ol {    padding-left: 32px;    padding-left: 2.13rem;}blockquote {    border-left: 4px solid #dddddd;    padding: 0 12px;    padding: 0 0.8rem;}blockquote &gt; :first-child {    margin-top: 0;}blockquote &gt; :last-child {    margin-bottom: 0;}img {    border: 0;    max-width: 100%;    height: auto !important;    margin: 2px 0;}table {    border-collapse: collapse;    border: 1px solid #bbbbbb;}td {    padding:4px 8px;    border-collapse: collapse;    border: 1px solid #bbbbbb;}@media screen and (max-width: 660px) {    body {        padding: 20px 18px;        padding: 1.33rem 1.2rem;    }}@media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {    html, body {        font-size: 17px;    }    body {        line-height: 1.7;        padding: 0.75rem 0.9375rem;        color: #353c47;    }    h1 {        font-size: 2.125rem;    }    h2 {        font-size: 1.875rem;    }    h3 {        font-size: 1.625rem;    }    h4 {        font-size: 1.375rem;    }    h5 {        font-size: 1.125rem;    }    h6 {        color: inherit;    }    ul, ol {        padding-left: 2.5rem;    }    blockquote {        padding: 0 0.9375rem;    }}</style><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editor.css" wiz_style="unsave" charset="utf-8"><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\scrollbar.css" wiz_style="unsave" charset="utf-8"><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\utils.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\localize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\wizEditor.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\checklist\todo.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\imageresize\dragresize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editorHelper.js" wiz_style="unsave" charset="utf-8"></script></p>
+<body style="" contenteditable="true">来源：<a href="http://www.itnose.net/detail/6095003.html" target="_blank" rel="external">http://www.itnose.net/detail/6095003.html</a> <div><br></div><div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。每一种解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如运行在浏览器中的JS的用途是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJS中的JS的用途是操作磁盘文件或搭建HTTP服务器，NodeJS就相应提供了fs、http等内置对象。Express作为NodeJS的Web应用框架，可以帮助我们快速开发Web网站。</p><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　开发环境</h3><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">NodeJS：v0.10.30</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">npm：1.4.21</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">OS：Win7旗舰版 32bit</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">Express：4.2.0</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">MongoDB：2.6.3</li><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project&gt; node -v<br>v0.10.30<br>E:\project&gt; npm -v<br>1.4.21<br>E:\project&gt; express -V<br>4.2.0</pre></div><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　1、建立工程</h3><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><span style="background-color: rgb(255, 255, 255);">　　使用express命令建立工程，并支持ejs：</span><span style="background-color: rgb(127, 255, 212);">-e是支持ejs，默认是支持jade</span></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px;"><span style="background-color: rgb(246, 246, 246);">E:\project&gt; express</span><span style="background-color: rgb(127, 255, 212);"> -e</span><span style="background-color: rgb(246, 246, 246);"> nodejs-demo<br><br>   create : nodejs-demo<br>   create : nodejs-demo/package.json<br>   create : nodejs-demo/app.js<br>   create : nodejs-demo/public<br>   create : nodejs-demo/public/javascripts<br>   create : nodejs-demo/public/images<br>   create : nodejs-demo/public/stylesheets<br>   create : nodejs-demo/public/stylesheets/style.css<br>   create : nodejs-demo/routes<br>   create : nodejs-demo/routes/index.js<br>   create : nodejs-demo/routes/users.js<br>   create : nodejs-demo/views<br>   create : nodejs-demo/views/index.ejs<br>   create : nodejs-demo/views/error.ejs<br>   create : nodejs-demo/bin<br>   create : nodejs-demo/bin/www<br><br>   install dependencies:<br>     $ cd nodejs-demo &amp;&amp; npm install<br><br>   run the app:<br>     $ DEBUG=nodejs-demo ./bin/www<br><br>E:\project&gt;</span></pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><span style="background-color: rgb(255, 255, 255);">　　根据提示下载依赖包：可能还要自己下载</span><span style="background-color: rgb(127, 255, 212);">mongoose</span><span style="background-color: rgb(255, 255, 255);"> </span><span style="background-color: rgb(127, 255, 212);">bson</span></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project&gt; cd .\nodejs-demo<br>E:\project\nodejs-demo&gt; npm install<br>npm WARN deprecated static-favicon@1.0.2: use serve-favicon module<br>static-favicon@1.0.2 node_modules\static-favicon<br><br>debug@0.7.4 node_modules\debug<br><br>ejs@0.8.8 node_modules\ejs<br><br>cookie-parser@1.0.1 node_modules\cookie-parser<br>├── cookie-signature@1.0.3<br>└── cookie@0.1.0<br><br>morgan@1.0.1 node_modules\morgan<br>└── bytes@0.3.0<br><br>body-parser@1.0.2 node_modules\body-parser<br>├── qs@0.6.6<br>├── raw-body@1.1.7 (bytes@1.0.0, string_decoder@0.10.25-1)<br>└── type-is@1.1.0 (mime@1.2.11)<br><br>express@4.2.0 node_modules\express<br>├── parseurl@1.0.1<br>├── utils-merge@1.0.0<br>├── cookie@0.1.2<br>├── merge-descriptors@0.0.2<br>├── escape-html@1.0.1<br>├── range-parser@1.0.0<br>├── fresh@0.2.2<br>├── cookie-signature@1.0.3<br>├── debug@0.8.1<br>├── methods@1.0.0<br>├── buffer-crc32@0.2.1<br>├── serve-static@1.1.0<br>├── path-to-regexp@0.1.2<br>├── qs@0.6.6<br>├── send@0.3.0 (debug@0.8.0, mime@1.2.11)<br>├── accepts@1.0.1 (negotiator@0.4.7, mime@1.2.11)<br>└── type-is@1.1.0 (mime@1.2.11)<br>E:\project\nodejs-demo&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　工程建立成功，启动服务：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project\nodejs-demo&gt; npm start<br><br>&gt; nodejs-demo@0.0.1 start E:\project\nodejs-demo<br>&gt; node ./bin/www</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　本地3000端口被打开，在浏览器地址栏输入localhost:3000，访问成功。</p><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　2、目录结构</h3><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">bin??存放命令行程序。</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">node_modules??存放所有的项目依赖库。</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><span style="background-color: rgb(255, 255, 255);">public??存放静态文件，包括css、js、img等。</span><span style="background-color: rgb(127, 255, 212);">我把下载的jquery 、bootstrap放到了public的相应文件夹下，便于访问，可是这样不太好，需要手动</span></li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">routes??存放路由文件。</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">views??存放页面文件（ejs模板）。</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">app.js??程序启动文件。</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">package.json??项目依赖配置及开发者信息。</li><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project\nodejs-demo&gt; dir<br><br><br>    目录: E:\project\nodejs-demo<br><br><br>Mode                LastWriteTime     Length Name<br>—-                ————-     —— —-<br>d—-         2014/8/16     21:55            bin<br>d—-         2014/8/16     22:03            node_modules<br>d—-         2014/8/16     21:55            public<br>d—-         2014/8/16     21:55            routes<br>d—-         2014/8/16     21:55            views<br>-a—         2014/8/16     21:55       1375 app.js<br>-a—         2014/8/16     21:55        327 package.json<br></pre></div><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　3、Express配置文件</h3><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><span style="background-color: rgb(255, 255, 255);">　　打开app.js：</span><span style="background-color: rgb(127, 255, 212);">初始化的</span></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;"> 1 var express = require(‘express’);<br> 2 var path = require(‘path’);<br> 3 var favicon = require(‘static-favicon’);<br> 4 var logger = require(‘morgan’);<br> 5 var cookieParser = require(‘cookie-parser’);<br> 6 var bodyParser = require(‘body-parser’);<br> 7<br> 8 var routes = require(‘./routes/index’);<br> 9 var users = require(‘./routes/users’);<br>10<br>11 var app = express();<br>12<br>13 // view engine setup<br>14 app.set(‘views’, path.join(<strong>dirname, ‘views’));<br>15 app.set(‘view engine’, ‘ejs’);<br>16<br>17 app.use(favicon());<br>18 app.use(logger(‘dev’));<br>19 app.use(bodyParser.json());<br>20 app.use(bodyParser.urlencoded());<br>21 app.use(cookieParser());<br>22 app.use(express.static(path.join(</strong>dirname, ‘public’)));<br>23<br>24 app.use(‘/‘, routes);<br>25 app.use(‘/users’, users);<br>26<br>27 /// catch 404 and forward to error handler<br>28 app.use(function(req, res, next) {<br>29     var err = new Error(‘Not Found’);<br>30     err.status = 404;<br>31     next(err);<br>32 });<br>33<br>34 /// error handlers<br>35<br>36 // development error handler<br>37 // will print stacktrace<br>38 if (app.get(‘env’) === ‘development’) {<br>39     app.use(function(err, req, res, next) {<br>40         res.status(err.status || 500);<br>41         res.render(‘error’, {<br>42             message: err.message,<br>43             error: err<br>44         });<br>45     });<br>46 }<br>47<br>48 // production error handler<br>49 // no stacktraces leaked to user<br>50 app.use(function(err, req, res, next) {<br>51     res.status(err.status || 500);<br>52     res.render(‘error’, {<br>53         message: err.message,<br>54         error: {}<br>55     });<br>56 });<br>57<br>58<br>59 module.exports = app;</pre></div><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　4、Ejs模板</h3><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><span style="background-color: rgb(255, 255, 255);">　　修改app.js，让ejs模板文件使用扩展名为html的文件：</span><span style="background-color: rgb(127, 255, 212);">修改后，views文件夹中的文件格式应为html</span></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">13 // view engine setup<br>14 app.set(‘views’, path.join(<strong>dirname, ‘views’));<br>15 //app.set(‘view engine’, ‘ejs’);<br>16 app.engine(‘html’, require(‘ejs’).renderFile);<br>17 app.set(‘view engine’, ‘html’);</strong></pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　修改完成后，重命名views/index.ejs为views/index.html。重启服务，访问成功。</p><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　5、安装常用库及页面分离</h3><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　添加bootstrap和jQuery：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project\nodejs-demo&gt; npm install bootstrap<br>bootstrap@3.2.0 node_modules\bootstrap<br>E:\project\nodejs-demo&gt; npm install jquery<br>jquery@2.1.1 node_modules\jquery<br>E:\project\nodejs-demo&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　接下来，把index.html分成三个部分：</p><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">header.html??页面头部区域。</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">index.html??页面内容区域。</li><li style="list-style: none; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><span style="background-color: rgb(255, 255, 255);">footer.html??页面底部区域。</span><span style="background-color: rgb(127, 255, 212);">注意一定不要有语法错！</span><span style="background-color: rgb(127, 255, 212);">注意一定不要有语法错！</span><span style="background-color: rgb(127, 255, 212);">注意一定不要有语法错！重要的事情说三遍。。。</span></li><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　<strong>header.html</strong></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">1 &lt;!DOCTYPE html&gt;<br>2 &lt;html lang=”en”&gt;<br>3 &lt;head&gt;<br>4     &lt;meta charset=”utf-8”&gt;<br>5     &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;<br>6     &lt;!– Bootstrap –&gt;<br>7     &lt;link href=”/stylesheets/bootstrap.min.css” rel=”stylesheet” media=”screen”&gt;<br>8 &lt;/head&gt;<br>9 &lt;body screen_capture_injected=”true”&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　<strong>index.html</strong></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">1 &lt;% include header.html %&gt;<br>2 &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;<br>3 &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;<br>4 &lt;% include footer.html %&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　<strong>footer.html</strong></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">1     &lt;script src=”/javascripts/jquery.min.js”&gt;&lt;/script&gt;<br>2     &lt;script src=”/javascripts/bootstrap.min.js”&gt;&lt;/script&gt;<br>3 &lt;/body&gt;<br>4 &lt;/html&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　重启服务，访问成功。</p><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　6、路由</h3><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　登录设计：</p><table style="border-spacing: 0px; width: 736px; font-size: 12px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><tbody><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">访问路径</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">页面</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">描述</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">index.html</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">不需要登录，可以直接访问。</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/home</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">home.html</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">必须用户登录以后，才可以访问。</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/login</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">login.html</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">登录页面，用户名密码输入正确，自动跳转到home.html。</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/logout</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">无</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">退出登录后，自动跳转到index.html。</td></tr></tbody></table><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　打开app.js文件，增加路由配置：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2;"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px;"><span style="background-color: rgb(246, 246, 246);">26 app.use(‘/‘, routes);<br>27 app.use(‘/users’, users);</span><span style="background-color: rgb(127, 255, 212);">？？？《《《===这是干啥的其实没懂</span><span style="background-color: rgb(246, 246, 246);"><br>28 app.use(‘/login’, routes);<br>29 app.use(‘/logout’, routes);<br>30 app.use(‘/home’, routes);</span></pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　打开routes/index.js文件，添加对应方法：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;"> 1 var express = require(‘express’);<br> 2 var router = express.Router();<br> 3<br> 4 /<em> GET home page. </em>/<br> 5 router.get(‘/‘, function(req, res) {<br> 6   res.render(‘index’, { title: ‘Express’ });<br> 7 });<br> 8<br> 9 router.route(‘/login’)<br>10 .get(function(req, res) {<br>11     res.render(‘login’, { title: ‘用户登录’ });<br>12 })<br>13 .post(function(req, res) {<br>14     var user={<br>15         username: ‘admin’,<br>16         password: ‘123456’<br>17     }<br>18     if(req.body.username === user.username &amp;&amp; req.body.password === user.password){<br>19         res.redirect(‘/home’);<br>20     }<br>21     res.redirect(‘/login’);<br>22 });<br>23<br>24 router.get(‘/logout’, function(req, res) {<br>25     res.redirect(‘/‘);<br>26 });<br>27<br>28 router.get(‘/home’, function(req, res) {<br>29     var user={<br>30         username:’admin’,<br>31         password:’123456’<br>32     }<br>33     res.render(‘home’, { title: ‘Home’, user: user });<br>34 });<br>35<br>36 module.exports = router;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　创建views/login.html和views/home.html两个文件：</p><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　<strong>login.html</strong></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;"> 1 &lt;% include header.html %&gt;<br> 2 &lt;div class=”container”&gt;<br> 3     &lt;form class=”col-sm-offset-4 col-sm-4 form-horizontal” role=”form” method=”post”&gt;<br> 4         &lt;fieldset&gt;<br> 5             &lt;legend&gt;用户登录&lt;/legend&gt;<br> 6             &lt;div class=”form-group”&gt;<br> 7                 &lt;label class=”col-sm-3 control-label” for=”username”&gt;用户名&lt;/label&gt;<br> 8                 &lt;div class=”col-sm-9”&gt;<br> 9                     &lt;input type=”text” class=”form-control” id=”username” name=”username” placeholder=”用户名” required&gt;<br>10                 &lt;/div&gt;<br>11             &lt;/div&gt;<br>12             &lt;div class=”form-group”&gt;<br>13                 &lt;label class=”col-sm-3 control-label” for=”password”&gt;密码&lt;/label&gt;<br>14                 &lt;div class=”col-sm-9”&gt;<br>15                     &lt;input type=”password” class=”form-control” id=”password” name=”password” placeholder=”密码” required&gt;<br>16                 &lt;/div&gt;<br>17             &lt;/div&gt;<br>18             &lt;div class=”form-group”&gt;<br>19                 &lt;div class=”col-sm-offset-3 col-sm-9”&gt;<br>20                     &lt;button type=”submit” class=”btn btn-primary”&gt;登录&lt;/button&gt;<br>21                 &lt;/div&gt;<br>22             &lt;/div&gt;<br>23         &lt;/fieldset&gt;<br>24     &lt;/form&gt;<br>25 &lt;/div&gt;<br>26 &lt;% include footer.html %&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　<strong>home.html</strong></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">1 &lt;% include header.html %&gt;<br>2 &lt;h1&gt;Welcome &lt;%= user.username %&gt;, 欢迎登录！！&lt;/h1&gt;<br>3 &lt;a class=”btn” href=”/logout”&gt;退出&lt;/a&gt;<br>4 &lt;% include footer.html %&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　修改index.html，增加登录链接：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">1 &lt;% include header.html %&gt;<br>2     &lt;h1&gt;Welcome to &lt;%= title %&gt;&lt;/h1&gt;<br>3     &lt;p&gt;&lt;a href=”/login”&gt;登录&lt;/a&gt;&lt;/p&gt;<br>4 &lt;% include footer.html %&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　路由及页面已准备好，重启服务，访问成功。</p><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　7、session感觉这些个东西都没用，而且作者最后也很醉人的并没有连同数据库，欺骗自己。。。倒是找到了另一个方法：</h3><div><br></div><div><p style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; margin-bottom: 16px; font-family: 'Pingfang SC', STHeiti, 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, sans-serif; font-size: 16px; orphans: 2; widows: 2;"><span style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; line-height: 1.5; font-size: 12.5px;"><span style="background-color: rgb(127, 255, 212);"><span style="color: rgb(61, 70, 77); box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 12.5px; line-height: 1.5;"><strong style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">1在models下创建一个user.js,作为实体类映射数据库的users集合</strong></span><span style="color: rgb(61, 70, 77); box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 12.5px; line-height: 1.5;"><strong style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">&nbsp;</strong></span></span><strong style="color: rgb(61, 70, 77); background-color: rgb(248, 248, 248); box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><br style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"></strong><br style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span style="background-color: rgb(127, 255, 212);">user.js<br style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"></span></span></p><pre class="brush:js; toolbar: true; auto-links: false; hljs javascript" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; overflow-x: auto; padding: 2px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; line-height: 1.4; word-wrap: normal; font-size: 13px; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; orphans: 2; widows: 2;"><code class="hljs javascript" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; display: block; overflow-x: auto; padding: 10px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; font-size: 13px; line-height: 1.4; word-wrap: normal; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;"><span style="background-color: rgb(127, 255, 212);"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">var</span>&nbsp;mongoose&nbsp;=&nbsp;<span class="hljs-built_in" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">require</span>(<span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">“mongoose”</span>);    <span class="hljs-comment" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">//    顶会议用户组件</span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">var</span>&nbsp;Schema&nbsp;=&nbsp;mongoose.Schema;    <span class="hljs-comment" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">//    创建模型</span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">var</span>&nbsp;userScheMa&nbsp;=&nbsp;<span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">new</span>&nbsp;Schema({<br>    userid:&nbsp;<span class="hljs-built_in" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">String</span>,<br>    password:&nbsp;<span class="hljs-built_in" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">String</span><br>});    <span class="hljs-comment" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">//    定义了一个新的模型，但是此模式还未和users集合有关联</span><br>exports.user&nbsp;=&nbsp;mongoose.model(<span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">‘users’</span>,&nbsp;userScheMa);&nbsp;<span class="hljs-comment" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">//    与users集合关联</span></span></code><code class="hljs javascript" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; display: block; overflow-x: auto; padding: 10px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; font-size: 13px; line-height: 1.4; word-wrap: normal; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;"><span style="background-color: rgb(127, 255, 212); font-size: 13px; line-height: 1.4;">来源：&nbsp;</span><a href="https://my.oschina.net/chenhao901007/blog/312367" style="background-color: rgb(127, 255, 212); font-size: 13px; line-height: 1.4;" target="_blank" rel="external">https://my.oschina.net/chenhao901007/blog/312367</a></code><div><span class="hljs-comment" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><div style="background-color: rgb(127, 255, 212);"><br></div><div style="background-color: rgb(127, 255, 212);"><br></div><div><span style="background-color: rgb(127, 255, 212);"><span class="hljs-comment" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">/<em>hompage</em>/</span><span style="font-size: 13px;"><br>router.post(</span><span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">‘/homepage’</span><span style="font-size: 13px;">,&nbsp;</span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">function</span></span></span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">(</span><span class="hljs-params" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-params" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">req,&nbsp;res</span></span></span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">)&nbsp;</span></span><span style="font-size: 13px;">{<br>    </span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">var</span><span style="font-size: 13px;">&nbsp;query_doc&nbsp;=&nbsp;{userid:&nbsp;req.body.userid,&nbsp;password:&nbsp;req.body.password};<br>    (</span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">function</span></span></span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">(</span><span class="hljs-params" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"></span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-params" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"></span>)</span></span><span style="font-size: 13px;">{<br>        user.count(query_doc,&nbsp;</span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">function</span></span></span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">(</span><span class="hljs-params" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;"><span class="hljs-params" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">err,&nbsp;doc</span></span></span><span class="hljs-function" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent;">)</span></span><span style="font-size: 13px;">{<br>            </span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">if</span><span style="font-size: 13px;">(doc&nbsp;==&nbsp;</span><span class="hljs-number" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">1</span><span style="font-size: 13px;">){<br>                </span><span class="hljs-built_in" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">console</span><span style="font-size: 13px;">.log(query_doc.userid&nbsp;+&nbsp;</span><span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">“:&nbsp;login&nbsp;success&nbsp;in&nbsp;”</span><span style="font-size: 13px;">&nbsp;+&nbsp;</span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">new</span><span style="font-size: 13px;">&nbsp;</span><span class="hljs-built_in" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">Date</span><span style="font-size: 13px;">());<br>                res.render(</span><span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">‘homepage’</span><span style="font-size: 13px;">,&nbsp;{&nbsp;title:&nbsp;</span><span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">‘homepage’</span><span style="font-size: 13px;">&nbsp;});<br>            }</span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">else</span><span style="font-size: 13px;">{<br>                </span><span class="hljs-built_in" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">console</span><span style="font-size: 13px;">.log(query_doc.userid&nbsp;+&nbsp;</span><span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">“:&nbsp;login&nbsp;failed&nbsp;in&nbsp;”</span><span style="font-size: 13px;">&nbsp;+&nbsp;</span><span class="hljs-keyword" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">new</span><span style="font-size: 13px;">&nbsp;</span><span class="hljs-built_in" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">Date</span><span style="font-size: 13px;">());<br>                res.redirect(</span><span class="hljs-string" style="box-sizing: inherit; -webkit-tap-highlight-color: transparent; font-size: 13px;">‘/‘</span><span style="font-size: 13px;">);<br>            }<br>        });<br>    })(query_doc);<br>});</span></span></div></span></div></pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">以下等号内的内容略过。。。</p><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">================================================================================================================　　</p><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">安装中间件express-session：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project\nodejs-demo&gt; npm install express-session<br>express-session@1.7.5 node_modules\express-session<br>├── cookie@0.1.2<br>├── cookie-signature@1.0.4<br>├── on-headers@1.0.0<br>├── utils-merge@1.0.0<br>├── parseurl@1.3.0<br>├── buffer-crc32@0.2.3<br>├── depd@0.4.4<br>├── debug@1.0.4 (ms@0.6.2)<br>└── uid-safe@1.0.1 (base64-url@1.0.0, mz@1.0.0)<br>E:\project\nodejs-demo&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　安装中间件connect-mongodb：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project\nodejs-demo&gt; npm install connect-mongodb<br>\<br><br><br>&gt; kerberos@0.0.3 install E:\project\nodejs-demo\node_modules\connect-mongodb\nod<br>e_modules\mongodb\node_modules\kerberos<br>&gt; (node-gyp rebuild 2&gt; builderror.log) || (exit 0)<br><br>|<br>E:\project\nodejs-demo\node_modules\connect-mongodb\node_modules\mongodb\node_mo<br>dules\kerberos&gt;node “C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin\<br>....\node_modules\node-gyp\bin\node-gyp.js” rebuild<br>|<br>&gt; bson@0.2.11 install E:\project\nodejs-demo\node_modules\connect-mongodb\node_m<br>odules\mongodb\node_modules\bson<br>&gt; (node-gyp rebuild 2&gt; builderror.log) || (exit 0)<br><br><br>E:\project\nodejs-demo\node_modules\connect-mongodb\node_modules\mongodb\node_mo<br>dules\bson&gt;node “C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin\...<br>.\node_modules\node-gyp\bin\node-gyp.js” rebuild<br>connect-mongodb@1.1.5 node_modules\connect-mongodb<br>├── connect@1.9.2 (mime@1.2.11, formidable@1.0.15, qs@1.2.2)<br>└── mongodb@1.4.8 (kerberos@0.0.3, readable-stream@1.0.27-1, bson@0.2.11)<br>E:\project\nodejs-demo&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　安装中间件mongodb：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">E:\project\nodejs-demo&gt; npm install mongodb<br>-<br><br><br>&gt; kerberos@0.0.3 install E:\project\nodejs-demo\node_modules\mongodb\node_module<br>s\kerberos<br>&gt; (node-gyp rebuild 2&gt; builderror.log) || (exit 0)<br><br>-<br>E:\project\nodejs-demo\node_modules\mongodb\node_modules\kerberos&gt;node “C:\Progr<br>am Files\nodejs\node_modules\npm\bin\node-gyp-bin\....\node_modules\node-gyp\b<br>in\node-gyp.js” rebuild<br>|<br>&gt; bson@0.2.11 install E:\project\nodejs-demo\node_modules\mongodb\node_modules\b<br>son<br>&gt; (node-gyp rebuild 2&gt; builderror.log) || (exit 0)<br><br><br>E:\project\nodejs-demo\node_modules\mongodb\node_modules\bson&gt;node “C:\Program F<br>iles\nodejs\node_modules\npm\bin\node-gyp-bin\....\node_modules\node-gyp\bin\n<br>ode-gyp.js” rebuild<br>mongodb@1.4.8 node_modules\mongodb<br>├── kerberos@0.0.3<br>├── readable-stream@1.0.27-1 (isarray@0.0.1, string_decoder@0.10.25-1, inheri<br>ts@2.0.1, core-util-is@1.0.1)<br>└── bson@0.2.11 (nan@1.2.0)<br>E:\project\nodejs-demo&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　添加database/settings.js和database/msession.js这两个文件：</p><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　<strong>settings.js</strong></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">1 module.exports = {<br>2     COOKIE_SECRET: ‘ywang1724.com’,<br>3     URL: ‘mongodb://127.0.0.1:27017/nodedb’,<br>4     DB: ‘nodedb’,<br>5     HOST: ‘127.0.0.1’,<br>6     PORT: 27017,<br>7     USERNAME: ‘admin’,<br>8     PASSWORD: ‘123456’<br>9 };</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　<strong>msession.js</strong></p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">1 var Settings = require(‘./settings’);<br>2 var Db = require(‘mongodb’).Db;<br>3 var Server = require(‘mongodb’).Server;<br>4 var db = new Db(Settings.DB, new Server(Settings.HOST, Settings.PORT, {auto_reconnect:true, native_parser: true}),{safe: false});<br>5<br>6 module.exports = db;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">================================================================================================================　　　</p><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">修改app.js文件：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;"> 1 var express = require(‘express’);<br> 2 var path = require(‘path’);<br> 3 var favicon = require(‘static-favicon’);<br> 4 var logger = require(‘morgan’);<br> 5 var cookieParser = require(‘cookie-parser’);<br> 6 var bodyParser = require(‘body-parser’);<br> 7<br> 8 //采用connect-mongodb中间件作为Session存储<br> 9 var session = require(‘express-session’);<br>10 var Settings = require(‘./database/settings’);<br>11 var MongoStore = require(‘connect-mongodb’);<br>12 var db = require(‘./database/msession’);<br>13<br>14 var routes = require(‘./routes/index’);<br>15 var users = require(‘./routes/users’);<br>16<br>17 var app = express();<br>18<br>19 // view engine setup<br>20 app.set(‘views’, path.join(dirname, ‘views’));<br>21 //app.set(‘view engine’, ‘ejs’);<br>22 app.engine(‘html’, require(‘ejs’).renderFile);<br>23 app.set(‘view engine’, ‘html’);<br>24<br>25 app.use(favicon());<br>26 app.use(logger(‘dev’));<br>27 app.use(bodyParser.json());<br>28 app.use(bodyParser.urlencoded());<br>29 app.use(cookieParser());<br>30 //session配置<br>31 app.use(session({<br>32     cookie: { maxAge: 600000 },<br>33     secret: Settings.COOKIE_SECRET,<br>34     store: new MongoStore({<br>35         username: Settings.USERNAME,<br>36         password: Settings.PASSWORD,<br>37         url: Settings.URL,<br>38         db: db})<br>39 }))<br>40 app.use(function(req, res, next){<br>41     res.locals.user = req.session.user;<br>42     next();<br>43 });<br>44<br>45 app.use(express.static(path.join(__dirname, ‘public’)));<br>46<br>47 ……</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　修改index.js文件：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;"> 1 var express = require(‘express’);<br> 2 var router = express.Router();<br> 3<br> 4 /<em> GET home page. </em>/<br> 5 router.get(‘/‘, function(req, res) {<br> 6     res.render(‘index’, { title: ‘Express’ });<br> 7 });<br> 8<br> 9 router.route(‘/login’)<br>10 .get(function(req, res) {<br>11     res.render(‘login’, { title: ‘用户登录’ });<br>12 })<br>13 .post(function(req, res) {<br>14     var user = {<br>15         username: ‘admin’,<br>16         password: ‘123456’<br>17     }<br>18     if(req.body.username === user.username &amp;&amp; req.body.password === user.password){<br>19         req.session.user = user;<br>20         res.redirect(‘/home’);<br>21     } else {<br>22         res.redirect(‘/login’);<br>23     }<br>24 });<br>25<br>26 router.get(‘/logout’, function(req, res) {<br>27     req.session.user = null;<br>28     res.redirect(‘/‘);<br>29 });<br>30<br>31 router.get(‘/home’, function(req, res) {<br>32     res.render(‘home’, { title: ‘Home’ });<br>33 });<br>34<br>35 module.exports = router;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　本地<a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/" target="_blank" rel="nofollow" style="text-decoration: none; color: rgb(13, 22, 207);">安装数据库MongoDB</a>，新建用户nodedb。重启服务，访问成功。</p><h3 style="margin-top: 0px; margin-bottom: 0px; padding-top: 10px; padding-bottom: 5px; font-size: 14px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　8、页面访问控制及提示</h3><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　访问控制设计：</p><table style="border-spacing: 0px; width: 736px; font-size: 12px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><tbody><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">访问路径</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">描述</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">任何人都可以访问，不需要认证。</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/home</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">拦截get请求，调用authentication()进行认证，不通过则自动跳转到登录页面。</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/login</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">任何人都可以访问，不需要认证。</td></tr><tr><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">/logout</td><td style="margin: 12px; padding: 0px 0px 0px 2px; height: 20px; border-color: rgb(204, 204, 204);">任何人都可以访问，不需要认证。</td></tr></tbody></table><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　修改index.js文件：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">34 router.get(‘/home’, function(req, res) {<br>35     authentication(req, res);<br>36     res.render(‘home’, { title: ‘Home’ });<br>37 });<br>38<br>39 function authentication(req, res) {<br>40     if (!req.session.user) {<br>41         return res.redirect(‘/login’);<br>42     }<br>43 }</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　重启服务，访问成功。</p><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　添加页面提示，修改app.js文件，增加res.locals.message：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">40 app.use(function(req, res, next) {<br>41     res.locals.user = req.session.user;<br>42     var err = req.session.error;<br>43     delete req.session.error;<br>44     res.locals.message = ‘’;<br>45     if (err) {<br>46         res.locals.message = ‘&lt;div class=”alert alert-warning”&gt;’ + err + ‘&lt;/div&gt;’;<br>47     }<br>48     next();<br>49 });</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　修改index.js文件，增加req.session.error：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;"> 1 var express = require(‘express’);<br> 2 var router = express.Router();<br> 3<br> 4 /<em> GET home page. </em>/<br> 5 router.get(‘/‘, function(req, res) {<br> 6     res.render(‘index’, { title: ‘Express’ });<br> 7 });<br> 8<br> 9 router.route(‘/login’)<br>10 .get(function(req, res) {<br>11     if (req.session.user) {<br>12         res.redirect(‘/home’);<br>13     }<br>14     res.render(‘login’, { title: ‘用户登录’ });<br>15 })<br>16 .post(function(req, res) {<br>17     var user = {<br>18         username: ‘admin’,<br>19         password: ‘123456’<br>20     }<br>21     if (req.body.username === user.username &amp;&amp; req.body.password === user.password) {<br>22         req.session.user = user;<br>23         res.redirect(‘/home’);<br>24     } else {<br>25         req.session.error=’用户名或密码不正确’;<br>26         res.redirect(‘/login’);<br>27     }<br>28 });<br>29<br>30 router.get(‘/logout’, function(req, res) {<br>31     req.session.user = null;<br>32     res.redirect(‘/‘);<br>33 });<br>34<br>35 router.get(‘/home’, function(req, res) {<br>36     authentication(req, res);<br>37     res.render(‘home’, { title: ‘Home’ });<br>38 });<br>39<br>40 function authentication(req, res) {<br>41     if (!req.session.user) {<br>42         req.session.error=’请先登录’;<br>43         return res.redirect(‘/login’);<br>44     }<br>45 }<br>46<br>47 module.exports = router;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　修改login.html，增加&lt;%- message %&gt;：</p><div class="sycode" style="margin-bottom: 5px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><pre class="precsshui" style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all; margin-top: 10px; margin-bottom: 10px; padding: 5px; font-family: 'Courier New', Arial; border-color: rgb(221, 221, 221) rgb(221, 221, 221) rgb(221, 221, 221) rgb(108, 226, 108); border-style: solid; border-width: 1px 1px 1px 4px; border-image-source: none; background-image: none; background-attachment: scroll; background-color: rgb(246, 246, 246); font-size: 10pt; line-height: 24px; letter-spacing: 0px; color: rgb(51, 51, 51); background-position: 0px 0px; background-repeat: repeat repeat;">5 &lt;legend&gt;用户登录&lt;/legend&gt;<br>6 &lt;%- message %&gt;<br>7 &lt;div class=”form-group”&gt;</pre></div><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">　　重启服务，访问成功。输入错误用户名密码：</p><p style="margin-bottom: 8px; padding: 0px; color: rgb(37, 37, 37); font-family: arial, 'microsoft yahei', 宋体, sans-serif; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><img src="da516839-b736-4a7e-9049-6b9a744a3a3b_128_files/0a8da55b-d767-451b-a9d6-655a272a7266.png" alt="web,网站,笔记,开发,学习0" style="max-width: 730px;"></p></div></body>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/" rel="tag">#mongodb</a>
+          
+            <a href="/tags/后端/" rel="tag">#后端</a>
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/03/图像转ASCII码/" rel="next" title="图像转ASCII码">
+                <i class="fa fa-chevron-left"></i> 图像转ASCII码
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="阿炸" />
+          <p class="site-author-name" itemprop="name">阿炸</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mideng2" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/MomILU" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">　　开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">　　1、建立工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">　　2、目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">　　3、Express配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">　　4、Ejs模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">　　5、安装常用库及页面分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">　　6、路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">　　7、session感觉这些个东西都没用，而且作者最后也很醉人的并没有连同数据库，欺骗自己。。。倒是找到了另一个方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">　　8、页面访问控制及提示</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阿炸</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

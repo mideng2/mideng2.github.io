@@ -1,0 +1,614 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js,前端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/straw.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="对象是引用类型，数组是对象，数组也是引用类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="引用类型">
+<meta property="og:url" content="http://yoursite.com/2016/10/03/引用类型/index.html">
+<meta property="og:site_name" content="阿炸炸炸酱の饮食记录">
+<meta property="og:description" content="对象是引用类型，数组是对象，数组也是引用类型">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:updated_time" content="2016-10-03T14:13:35.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="引用类型">
+<meta name="twitter:description" content="对象是引用类型，数组是对象，数组也是引用类型">
+<meta name="twitter:image" content="http://common.cnblogs.com/images/copycode.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/03/引用类型/"/>
+
+  <title> 引用类型 | 阿炸炸炸酱の饮食记录 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿炸炸炸酱の饮食记录</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                引用类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-03T22:07:29+08:00" content="2016-10-03">
+              2016-10-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style type="text/css" id="wiz_todo_style_id" wiz_link_version="01.00.09">.wiz-todo, .wiz-todo-img {width: 16px; height: 16px; cursor: default; padding: 0 10px 0 2px; vertical-align: -10%;-webkit-user-select: none;} .wiz-todo-label { display: inline-block; padding-top: 7px; padding-bottom: 6px; line-height: 1.5;} .wiz-todo-label-checked {  color: #666;} .wiz-todo-label-unchecked {text-decoration: initial;} .wiz-todo-completed-info {padding-left: 44px; display: inline-block; } .wiz-todo-avatar { width:20px; height: 20px; vertical-align: -20%; margin-right:10px; border-radius: 2px;} .wiz-todo-account, .wiz-todo-dt { color: #666; }</style>
+
+<p><style id="wiz_custom_css">        html, body {            font-size: 15px;        }        body {            font-family: Helvetica, ‘Hiragino Sans GB’, ‘微软雅黑’, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;            line-height: 1.6;            margin: 0;            padding: 20px 36px;            padding: 1.33rem 2.4rem;        }        h1, h2, h3, h4, h5, h6 {            margin: 20px 0 10px;            margin: 1.33rem 0 0.667rem;            padding: 0;            font-weight: bold;        }        h1 {            font-size: 21px;            font-size: 1.4rem;        }        h2 {            font-size: 20px;            font-size: 1.33rem;        }        h3 {            font-size: 18px;            font-size: 1.2rem;        }        h4 {            font-size: 17px;            font-size: 1.13rem;        }        h5 {            font-size: 15px;            font-size: 1rem;        }        h6 {            font-size: 15px;            font-size: 1rem;            color: #777777;            margin: 1rem 0;        }        div, p, ul, ol, dl, li {            margin: 0;        }        blockquote, table, pre, code {            margin: 8px 0;        }        ul, ol {            padding-left: 32px;            padding-left: 2.13rem;        }        blockquote {            padding: 0 12px;            padding: 0 0.8rem;        }        blockquote &gt; :first-child {            margin-top: 0;        }        blockquote &gt; :last-child {            margin-bottom: 0;        }        img {            border: 0;            max-width: 100%;            height: auto !important;            margin: 2px 0;        }        table {            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        td {            padding: 4px 8px;            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        @media screen and (max-width: 660px) {            body {                padding: 20px 18px;                padding: 1.33rem 1.2rem;            }        }        @media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {            html, body {                font-size: 17px;            }            body {                line-height: 1.7;                padding: 0.75rem 0.9375rem;                color: #353c47;            }            h1 {                font-size: 2.125rem;            }            h2 {                font-size: 1.875rem;            }            h3 {                font-size: 1.625rem;            }            h4 {                font-size: 1.375rem;            }            h5 {                font-size: 1.125rem;            }            h6 {                color: inherit;            }            ul, ol {                padding-left: 2.5rem;            }            blockquote {                padding: 0 0.9375rem;            }        }</style><style name="wiz_tmp_editor_style">html, body {    font-size: 15px;}body {    font-family: Helvetica, ‘Hiragino Sans GB’, 微软雅黑, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;    line-height: 1.6;    color: ;    background-color: ;    margin: 0;    padding: 16px 20px;}h1, h2, h3, h4, h5, h6 {    margin: 20px 0 10px;    margin: 1.33rem 0 0.667rem;    padding: 0;    font-weight: bold;}h1 {    font-size: 21px;    font-size: 1.4rem;}h2 {    font-size: 20px;    font-size: 1.33rem;}h3 {    font-size: 18px;    font-size: 1.2rem;}h4 {    font-size: 17px;    font-size: 1.13rem;}h5 {    font-size: 15px;    font-size: 1rem;}h6 {    font-size: 15px;    font-size: 1rem;    color: #777777;    margin: 1rem 0;}div, p, ul, ol, dl, li {    margin: 0;}blockquote, table, pre, code{    margin: 8px 0;}ul, ol {    padding-left: 32px;    padding-left: 2.13rem;}blockquote {    border-left: 4px solid #dddddd;    padding: 0 12px;    padding: 0 0.8rem;}blockquote &gt; :first-child {    margin-top: 0;}blockquote &gt; :last-child {    margin-bottom: 0;}img {    border: 0;    max-width: 100%;    height: auto !important;    margin: 2px 0;}table {    border-collapse: collapse;    border: 1px solid #bbbbbb;}td {    padding:4px 8px;    border-collapse: collapse;    border: 1px solid #bbbbbb;}@media screen and (max-width: 660px) {    body {        padding: 20px 18px;        padding: 1.33rem 1.2rem;    }}@media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {    html, body {        font-size: 17px;    }    body {        line-height: 1.7;        padding: 0.75rem 0.9375rem;        color: #353c47;    }    h1 {        font-size: 2.125rem;    }    h2 {        font-size: 1.875rem;    }    h3 {        font-size: 1.625rem;    }    h4 {        font-size: 1.375rem;    }    h5 {        font-size: 1.125rem;    }    h6 {        color: inherit;    }    ul, ol {        padding-left: 2.5rem;    }    blockquote {        padding: 0 0.9375rem;    }}</style><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editor.css" wiz_style="unsave" charset="utf-8"><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\scrollbar.css" wiz_style="unsave" charset="utf-8"><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\utils.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\localize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\wizEditor.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\checklist\todo.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\imageresize\dragresize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editorHelper.js" wiz_style="unsave" charset="utf-8"></script></p>
+<body style="" contenteditable="true"><br><div><pre style="background-color:#404040;color:#9bc28e;font-family:'Consolas';font-size:10.8pt;"><span style="color:#ca9e4d;font-weight:bold;">var </span>arr1 = <span style="color:#34ae34;font-weight:bold;">“john”</span>.<span style="color:#7a7a43;">split</span><span style="font-weight:bold;">(</span><span style="color:#34ae34;font-weight:bold;">‘’</span><span style="font-weight:bold;">)</span>;<span style="color:#d14c42;">//j o h n<br></span><span style="color:#ca9e4d;font-weight:bold;">var </span>arr2 = arr1.<span style="color:#7a7a43;">reverse</span><span style="font-weight:bold;">()</span>; <span style="color:#d14c42;">//n h o j<br></span><span style="color:#ca9e4d;font-weight:bold;">var </span>arr3 = <span style="color:#34ae34;font-weight:bold;">“jones”</span>.<span style="color:#7a7a43;">split</span><span style="font-weight:bold;">(</span><span style="color:#34ae34;font-weight:bold;">‘’</span><span style="font-weight:bold;">)</span>;<span style="color:#d14c42;">//j o n e s<br></span>arr2.<span style="color:#7a7a43;">push</span><span style="font-weight:bold;">(</span>arr3<span style="font-weight:bold;">)</span>;<br><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span>arr1<span style="font-weight:bold;">)</span>;<br><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span>arr2<span style="font-weight:bold;">)</span>;<br><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span><span style="color:#34ae34;font-weight:bold;">“array 1: length=” </span>+ arr1.<span style="color:#b9b9b9;font-weight:bold;">length </span>+ <span style="color:#34ae34;font-weight:bold;">“ last=” </span>+ arr1.<span style="color:#7a7a43;">slice</span><span style="font-weight:bold;">(</span>-<span style="color:#f971bb;">1</span><span style="font-weight:bold;">))</span>;<br><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span><span style="color:#34ae34;font-weight:bold;">“array 2: length=” </span>+ arr2.<span style="color:#b9b9b9;font-weight:bold;">length </span>+ <span style="color:#34ae34;font-weight:bold;">“ last=” </span>+ arr2.<span style="color:#7a7a43;">slice</span><span style="font-weight:bold;">(</span>-<span style="color:#f971bb;">1</span><span style="font-weight:bold;">))</span>;<br><br><span style="color:#ca9e4d;font-weight:bold;">var </span>shuzu1 = <span style="font-weight:bold;">[]</span>;<br><span style="color:#ca9e4d;font-weight:bold;">var </span>shuzu2 = shuzu1;<br>shuzu2.<span style="color:#7a7a43;">push</span><span style="font-weight:bold;">(</span><span style="color:#34ae34;font-weight:bold;">‘hh’</span><span style="font-weight:bold;">)</span>;<br><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span>shuzu1<span style="font-weight:bold;">)<br></span><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span>shuzu2<span style="font-weight:bold;">)</span></pre></div><div>通过上面两个例子，我们发现，数组在赋值之后，改变一个值，则原数组也会改变</div><div><br></div><div><pre style="background-color:#404040;color:#9bc28e;font-family:'Consolas';font-size:10.8pt;"><span style="color:#ca9e4d;font-weight:bold;">var </span>duixiang1 = {};<br><span style="color:#ca9e4d;font-weight:bold;">var </span>duixiang2 = duixiang1;<br>duixiang2.<span style="color:#b9b9b9;font-weight:bold;">a</span>=<span style="color:#34ae34;font-weight:bold;">‘hehe’</span>;<br><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span>duixiang1<span style="font-weight:bold;">)<br></span><span style="color:#b9b9b9;font-weight:bold;">console</span>.<span style="color:#7a7a43;">log</span><span style="font-weight:bold;">(</span>duixiang2<span style="font-weight:bold;">)</span></pre></div><div>这个对象例子也是一样的，再来看看String() &nbsp;</div><div>String()暂时没有找到改变原字符串的方法，等我再刷一遍红宝书再来看</div><div><br></div><div>网上的一个总结，还可以</div><div><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">javascript对象引用与赋值</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">&lt;script type=”text/javascript”&gt;</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">//例子一: 引用</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">var myArrayRef = new Array(0,1,2); //创建数组对象</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">var mySeconArrayRef = myArrayRef; // 对象复制.</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">myArrayRef[0] = 100; // 修改元素值</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">alert(mySeconArrayRef[0]);</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">/<strong></strong></p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"><em> 输出 100; 学过其它语言的都应该知道这里应该输出的是0 为什么输出的是100呢?</em></p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"> 上面程序通过把myArrayRef对象复制给了mySeconArrayRef这时就存在了2个独立的 但最初值是相同的对象</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"><em> 因为是独立的为什么修改myArrayRef会对别一个对象有影响呢?大家都知道只有当他们引用的是同一个对象时这时修改一个才会</em></p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"> 对别一个产生影响.但是在javascript语言中创建的对象myArrayRef值中其时保存的是对象的引用(也就是一个地址).</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"><em> 也就是 我用 new Array生成的保存在内存中而new Array把它所在的地方告诉了myArrayRef,myArrayRef又把这地址告诉了mySeconArrayRef</em></p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"> 他们两个都指向的是new Array生成对象的地址而不是把对象保存在myArrayRef中,所以通过其中的一个去修改值时其时是修改他们同指象的那对象.</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">*/</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">alert(mySeconArrayRef[0] );</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">//例子二: 赋值</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">var myVa = ‘ABC’; //把ABC的值 赋予了myVa</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">var myVb = myVa; // myVa 赋值给 myVb</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">myVa = ‘DEF’; //修改myVa</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">/</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"><em> 输出的是:ABC. 因为是把值保存在了变量了 而不是保存的是引用地址,所以他们两个是相对独立的整体.</em></p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">/</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">alert(myVb);</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">&lt;/script&gt;</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">如果真要复制对象互不影响，则要通过转换赋值或者遍历key:value来复制你中的方法和属性。</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"><strong style="margin: 0px; padding: 0px;"><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(255, 0, 0);">注意：对象的子对象也是引用，所以遍历赋值的时候要判断，子元素是否是对象，如果子元素是对象，则继续对子元素进行遍历赋值。<br style="margin: 0px; padding: 0px;">转换赋值方式：<br style="margin: 0px; padding: 0px;"></span></strong></p><div class="cnblogs_code" style="margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid rgb(204, 204, 204); overflow: auto; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 245, 245); font-family: 'Courier New' !important;"><div class="cnblogs_code_toolbar" style="margin-top: 5px; padding: 0px;"><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5; font-size: 12px !important;"><a href="" title="复制代码" style="margin: 0px; padding: 0px; color: rgb(0, 0, 0); border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; max-width: 900px; border-style: none !important;"></a></span></div><pre style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New' !important; font-size: 12px !important;"><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(0, 0, 255); font-size: 12px !important;">var</span> data = {a:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">1</span>,b:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">2</span>,c:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">3</span>,d:[<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">0</span>,<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">1</span>,<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">2</span>,<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">3</span><span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;">]};<br></span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(0, 0, 255); font-size: 12px !important;">var</span> str =<span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;"> JSON.stringify(data);<br></span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(0, 0, 255); font-size: 12px !important;">var</span> data1 =<span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;"> $.parseJSON(str); //$为jQuery对象需要引入jQuery包<br>data1[</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">e</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span>] = <span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">4</span><span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;">;<br>data1[</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">d</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span>][<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">0</span>] = <span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">11</span><span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;">;<br>console.log(data);<br>console.log(data1);</span></pre><div class="cnblogs_code_toolbar" style="margin-top: 5px; padding: 0px;"><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5; font-size: 12px !important;"><a href="" title="复制代码" style="margin: 0px; padding: 0px; color: rgb(0, 0, 0); border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; max-width: 900px; border-style: none !important;"></a></span></div></div><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">输出结果：<br style="margin: 0px; padding: 0px;"><span class="console-object-preview" style="margin: 0px; padding: 0px; line-height: 13px; box-sizing: border-box; font-style: italic; font-size: 12px; font-family: Consolas, 'Lucida Console', monospace; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">{<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">a</span>:&nbsp;<span class="console-formatted-number" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(28, 0, 207);">1</span>,&nbsp;<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">b</span>:&nbsp;<span class="console-formatted-number" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(28, 0, 207);">2</span>,&nbsp;<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">c</span>:&nbsp;<span class="console-formatted-number" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(28, 0, 207);">3</span>,&nbsp;<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">d</span>:&nbsp;[0,1,2,3]}<br style="margin: 0px; padding: 0px;"></span><strong style="margin: 0px; padding: 0px;"><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(255, 0, 0);"><span class="console-object-preview" style="margin: 0px; padding: 0px; line-height: 13px; box-sizing: border-box; font-style: italic; font-weight: normal; font-size: 12px; font-family: Consolas, 'Lucida Console', monospace; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">{<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">a</span>:&nbsp;<span class="console-formatted-number" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(28, 0, 207);">1</span>,&nbsp;<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">b</span>:&nbsp;<span class="console-formatted-number" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(28, 0, 207);">2</span>,&nbsp;<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">c</span>:&nbsp;<span class="console-formatted-number" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(28, 0, 207);">3</span>,&nbsp;<span class="name" style="margin: 0px; padding: 0px; line-height: 1.5; box-sizing: border-box; color: rgb(136, 19, 145);">d</span>:&nbsp;[11,1,2,3],<span style="margin: 0px; padding: 0px; line-height: 13px; font-size: 12px;"><span class="Apple-converted-space" style="margin: 0px; padding: 0px; line-height: 1.5;">&nbsp;</span></span><span class="name" style="margin: 0px; padding: 0px; line-height: 13px; box-sizing: border-box; font-size: 12px; color: rgb(136, 19, 145);">e</span><span style="margin: 0px; padding: 0px; line-height: 13px; font-size: 12px;">:<span class="Apple-converted-space" style="margin: 0px; padding: 0px; line-height: 1.5;">&nbsp;</span></span><span class="console-formatted-number" style="margin: 0px; padding: 0px; line-height: 13px; box-sizing: border-box; font-size: 12px; color: rgb(28, 0, 207);">4</span>}<br style="margin: 0px; padding: 0px;"><br style="margin: 0px; padding: 0px;"></span></span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(255, 0, 0);">相互没有影响</span></strong></p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">&nbsp;</p><div style="padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);"><strong style="margin: 0px; padding: 0px;"><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(255, 0, 0);">当对象引用做为函数参数传递时候，依然会相互影响，切记，如下示例：</span></strong></div><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">&nbsp;</p><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">&nbsp;</p><div class="cnblogs_code" style="margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid rgb(204, 204, 204); overflow: auto; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 245, 245); font-family: 'Courier New' !important;"><div class="cnblogs_code_toolbar" style="margin-top: 5px; padding: 0px;"><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5; font-size: 12px !important;"><a href="" title="复制代码" style="margin: 0px; padding: 0px; color: rgb(0, 0, 0); border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; max-width: 900px; border-style: none !important;"></a></span></div><pre style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New' !important; font-size: 12px !important;"><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(0, 0, 255); font-size: 12px !important;">var</span> data = {a:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">1</span>,b:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">2</span>,c:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">3</span>,d:{q:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">4</span>,w:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">5</span>,e:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">6</span><span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;">}};<br></span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(0, 0, 255); font-size: 12px !important;">var</span> data1 =<span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;"> data;<br>function con(data2){<br>data2[</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">r</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span>] = <span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">5</span><span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;">;<br>console.log(JSON.stringify(data2));<br>}<br>con(data1);<br>console.log(JSON.stringify(data));</span></pre><div class="cnblogs_code_toolbar" style="margin-top: 5px; padding: 0px;"><span class="cnblogs_code_copy" style="margin: 0px; padding: 0px 5px 0px 0px; line-height: 1.5; font-size: 12px !important;"><a href="" title="复制代码" style="margin: 0px; padding: 0px; color: rgb(0, 0, 0); border: none !important;"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" style="margin-top: 0px; margin-bottom: 0px; padding: 0px; max-width: 900px; border-style: none !important;"></a></span></div></div><p style="margin: 10px auto; padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">输出结果：</p><div style="padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1; background-color: rgb(245, 250, 254);">{“a”:1,”b”:2,”c”:3,”d”:{“q”:4,”w”:5,”e”:6},”r”:5}</div><div style="padding: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; widows: 1;"><div style="background-color: rgb(245, 250, 254); padding: 0px;">{“a”:1,”b”:2,”c”:3,”d”:{“q”:4,”w”:5,”e”:6},”r”:5}</div><div style="background-color: rgb(245, 250, 254); padding: 0px;">&nbsp;</div><div style="padding: 0px;"><strong style="margin: 0px; padding: 0px;"><span style="margin: 0px; padding: 0px; line-height: 1.5;"><span style="color: rgb(255, 0, 0); background-color: rgb(245, 250, 254);">对象引用赋值后，如果将对象置空，相互间是不受影响的，如下：</span><span style="background-color: rgb(60, 179, 113);"><font color="#ffffff">我觉得这里不是将对象置为空，而是赋了一个新的空对象，arr不在指向原来的对象，所以不受影响</font></span></span></strong><br style="margin: 0px; padding: 0px;"><div class="cnblogs_code" style="background-color: rgb(245, 245, 245); margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid rgb(204, 204, 204); overflow: auto; font-family: 'Courier New' !important; font-size: 12px !important;"><pre style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New' !important; font-size: 12px !important;"><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(0, 0, 255); font-size: 12px !important;">var</span> arr = {<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">a</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span>:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">1</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span>,<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">b</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span>:<span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">2</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;">};<br></span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(0, 0, 255); font-size: 12px !important;">var</span> arr1 =<span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;"> arr;<br>arr </span>=<span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;"> {};<br>arr[</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">a</span><span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 0); font-size: 12px !important;">“</span>] = <span style="margin: 0px; padding: 0px; line-height: 1.5; color: rgb(128, 0, 128); font-size: 12px !important;">2</span><span style="margin: 0px; padding: 0px; line-height: 1.5; font-size: 12px !important;">;<br>console.log(arr1);<br>console.log(arr);</span></pre></div><p style="background-color: rgb(245, 250, 254); margin: 10px auto; padding: 0px;">输出结果：{“a”:”1”,”b”:”2”}，{“a”:2}</p><br><div style="background-color: rgb(245, 250, 254); color: gray;"><small>来源：&nbsp;<a href="http://www.cnblogs.com/wshiqtb/p/3479963.html" target="_blank" rel="external">http://www.cnblogs.com/wshiqtb/p/3479963.html</a></small></div></div></div></div></body>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/29/algorithm/" rel="next" title="algorithm">
+                <i class="fa fa-chevron-left"></i> algorithm
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/03/布尔值的比较/" rel="prev" title="布尔值的比较">
+                布尔值的比较 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="阿炸" />
+          <p class="site-author-name" itemprop="name">阿炸</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mideng2" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/MomILU" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阿炸</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
