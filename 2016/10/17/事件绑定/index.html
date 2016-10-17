@@ -1,0 +1,607 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="-js -前端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/straw.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ie和标准浏览器，事件绑定总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件绑定">
+<meta property="og:url" content="http://yoursite.com/2016/10/17/事件绑定/index.html">
+<meta property="og:site_name" content="阿炸炸炸酱の饮食记录">
+<meta property="og:description" content="ie和标准浏览器，事件绑定总结">
+<meta property="og:updated_time" content="2016-10-17T08:46:04.318Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件绑定">
+<meta name="twitter:description" content="ie和标准浏览器，事件绑定总结">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/17/事件绑定/"/>
+
+  <title> 事件绑定 | 阿炸炸炸酱の饮食记录 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿炸炸炸酱の饮食记录</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                事件绑定
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T16:34:08+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style type="text/css" id="wiz_todo_style_id" wiz_link_version="01.00.09">.wiz-todo, .wiz-todo-img {width: 16px; height: 16px; cursor: default; padding: 0 10px 0 2px; vertical-align: -10%;-webkit-user-select: none;} .wiz-todo-label { display: inline-block; padding-top: 7px; padding-bottom: 6px; line-height: 1.5;} .wiz-todo-label-checked {  color: #666;} .wiz-todo-label-unchecked {text-decoration: initial;} .wiz-todo-completed-info {padding-left: 44px; display: inline-block; } .wiz-todo-avatar { width:20px; height: 20px; vertical-align: -20%; margin-right:10px; border-radius: 2px;} .wiz-todo-account, .wiz-todo-dt { color: #666; }</style>
+
+<p><style id="wiz_custom_css">        html, body {            font-size: 15px;        }        body {            font-family: Helvetica, ‘Hiragino Sans GB’, ‘微软雅黑’, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;            line-height: 1.6;            margin: 0;            padding: 20px 36px;            padding: 1.33rem 2.4rem;        }        h1, h2, h3, h4, h5, h6 {            margin: 20px 0 10px;            margin: 1.33rem 0 0.667rem;            padding: 0;            font-weight: bold;        }        h1 {            font-size: 21px;            font-size: 1.4rem;        }        h2 {            font-size: 20px;            font-size: 1.33rem;        }        h3 {            font-size: 18px;            font-size: 1.2rem;        }        h4 {            font-size: 17px;            font-size: 1.13rem;        }        h5 {            font-size: 15px;            font-size: 1rem;        }        h6 {            font-size: 15px;            font-size: 1rem;            color: #777777;            margin: 1rem 0;        }        div, p, ul, ol, dl, li {            margin: 0;        }        blockquote, table, pre, code {            margin: 8px 0;        }        ul, ol {            padding-left: 32px;            padding-left: 2.13rem;        }        blockquote {            padding: 0 12px;            padding: 0 0.8rem;        }        blockquote &gt; :first-child {            margin-top: 0;        }        blockquote &gt; :last-child {            margin-bottom: 0;        }        img {            border: 0;            max-width: 100%;            height: auto !important;            margin: 2px 0;        }        table {            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        td {            padding: 4px 8px;            border-collapse: collapse;            border: 1px solid #bbbbbb;        }        @media screen and (max-width: 660px) {            body {                padding: 20px 18px;                padding: 1.33rem 1.2rem;            }        }        @media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {            html, body {                font-size: 17px;            }            body {                line-height: 1.7;                padding: 0.75rem 0.9375rem;                color: #353c47;            }            h1 {                font-size: 2.125rem;            }            h2 {                font-size: 1.875rem;            }            h3 {                font-size: 1.625rem;            }            h4 {                font-size: 1.375rem;            }            h5 {                font-size: 1.125rem;            }            h6 {                color: inherit;            }            ul, ol {                padding-left: 2.5rem;            }            blockquote {                padding: 0 0.9375rem;            }        }</style><style name="wiz_tmp_editor_style">html, body {    font-size: 15px;}body {    font-family: Helvetica, ‘Hiragino Sans GB’, 微软雅黑, ‘Microsoft YaHei UI’, SimSun, SimHei, arial, sans-serif;    line-height: 1.6;    color: ;    background-color: ;    margin: 0;    padding: 16px 20px;}h1, h2, h3, h4, h5, h6 {    margin: 20px 0 10px;    margin: 1.33rem 0 0.667rem;    padding: 0;    font-weight: bold;}h1 {    font-size: 21px;    font-size: 1.4rem;}h2 {    font-size: 20px;    font-size: 1.33rem;}h3 {    font-size: 18px;    font-size: 1.2rem;}h4 {    font-size: 17px;    font-size: 1.13rem;}h5 {    font-size: 15px;    font-size: 1rem;}h6 {    font-size: 15px;    font-size: 1rem;    color: #777777;    margin: 1rem 0;}div, p, ul, ol, dl, li {    margin: 0;}blockquote, table, pre, code{    margin: 8px 0;}ul, ol {    padding-left: 32px;    padding-left: 2.13rem;}blockquote {    border-left: 4px solid #dddddd;    padding: 0 12px;    padding: 0 0.8rem;}blockquote &gt; :first-child {    margin-top: 0;}blockquote &gt; :last-child {    margin-bottom: 0;}img {    border: 0;    max-width: 100%;    height: auto !important;    margin: 2px 0;}table {    border-collapse: collapse;    border: 1px solid #bbbbbb;}td {    padding:4px 8px;    border-collapse: collapse;    border: 1px solid #bbbbbb;}@media screen and (max-width: 660px) {    body {        padding: 20px 18px;        padding: 1.33rem 1.2rem;    }}@media only screen and (-webkit-max-device-width: 1024px), only screen and (-o-max-device-width: 1024px), only screen and (max-device-width: 1024px), only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (-o-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {    html, body {        font-size: 17px;    }    body {        line-height: 1.7;        padding: 0.75rem 0.9375rem;        color: #353c47;    }    h1 {        font-size: 2.125rem;    }    h2 {        font-size: 1.875rem;    }    h3 {        font-size: 1.625rem;    }    h4 {        font-size: 1.375rem;    }    h5 {        font-size: 1.125rem;    }    h6 {        color: inherit;    }    ul, ol {        padding-left: 2.5rem;    }    blockquote {        padding: 0 0.9375rem;    }}</style><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editor.css" wiz_style="unsave" charset="utf-8"><link rel="stylesheet" type="text/css" href="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\scrollbar.css" wiz_style="unsave" charset="utf-8"><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\utils.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\localize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\wizEditor.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\checklist\todo.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\core\imageresize\dragresize.js" wiz_style="unsave" charset="utf-8"></script><script type="text/javascript" src="file:///D:\Program Files (x86)\WizNote\WizNote\WizTools\htmleditor\editorHelper.js" wiz_style="unsave" charset="utf-8"></script></p>
+<body style="" contenteditable="true"><h2 style="font-size: 18px; letter-spacing: -1px; background-image: url(&quot;&quot;); margin-top: 0px; margin-bottom: 0px; padding-top: 6px; padding-bottom: 6px; font-weight: normal; line-height: 21.6px; color: rgb(51, 51, 51); font-family: Verdana, 'Lucida Grande', Geneva, Arial, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); background-position: 0% 100%; background-repeat: repeat no-repeat;"><a id="cb_post_title_url" href="http://www.cnblogs.com/ninofocus/archive/2012/11/07/javascript-event-bind.html" style="outline: none; text-decoration: none; color: rgb(102, 153, 204);" target="_blank" rel="external">JavaScript事件绑定</a></h2><small style="font-size: 12px; color: rgb(171, 171, 171); display: block; text-align: right; font-family: Verdana, 'Lucida Grande', Geneva, Arial, sans-serif; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);">2012-11-07 18:46 by NinoFocus,&nbsp;<span id="post_view_count">13242</span>&nbsp;阅读,&nbsp;<span id="post_comment_count">3</span>&nbsp;评论,&nbsp;<a href="http://www.cnblogs.com/ninofocus/archive/2012/11/07/2758772.html#" style="outline: none; text-decoration: none; color: rgb(171, 171, 171);" target="_blank" rel="external">收藏</a>,&nbsp;<a href="https://i.cnblogs.com/EditPosts.aspx?postid=2758772" rel="external" style="outline: none; text-decoration: none; color: rgb(171, 171, 171);" target="_blank">编辑</a></small><div class="entry" style="font-size: 14px; font-family: 'Microsoft Yahei', 微软雅黑, Tahoma, Arial, Helvetica, STHeiti; line-height: 1.8; word-break: break-all; color: rgb(51, 51, 51); orphans: 2; widows: 2; background-color: rgb(255, 255, 255);"><div id="cnblogs_post_body" style="margin-bottom: 20px; word-break: break-word;"><p style="line-height: 1.8; margin: 10px auto;">本文介绍一些JavaScript事件绑定的常用方法及其优缺点，同时在最后展示一个由 Dean Edwards 写的一个比较完美的事件绑定方案。</p><h1 style="font-size: 28px; margin-top: 8px; margin-bottom: 4px; padding: 5px; color: white; background-color: gray; line-height: 1.5;">传统方式</h1><div class="cnblogs_code" style="border-width: 1px 1px 1px 5px; border-style: dashed dashed dashed solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(204, 204, 204) rgb(108, 226, 108); padding: 5px; overflow: auto; margin-top: 10px; margin-bottom: 10px; color: rgb(0, 0, 0); font-size: 10pt; line-height: 16.8px; font-family: 'Courier New' !important; background-position: initial initial; background-repeat: initial initial;"><pre style="margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: &quot;Courier New&quot; !important; font-size: 12px !important; max-width: 600px;">    element.onclick = <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;">(e){<br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> …</span><br>    };</pre></div><ol style="padding-left: 40px;"><li style="padding: 0px; list-style-type: decimal;">传统绑定的优点<ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">非常简单和稳定，可以确保它在你使用的不同浏览器中运作一致</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">处理事件时，this关键字引用的是当前元素，这很有帮组</li></ul></li><li style="padding: 0px; list-style-type: decimal;">传统绑定的缺点&nbsp;<ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">传统方法只会在事件冒泡中运行，而非捕获和冒泡</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">一个元素一次只能绑定一个事件处理函数。新绑定的事件处理函数会覆盖旧的事件处理函数</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">事件对象参数(e)仅非IE浏览器可用</li></ul></li></ol><h1 style="font-size: 28px; margin-top: 8px; margin-bottom: 4px; padding: 5px; color: white; background-color: gray; line-height: 1.5;">W3C方式</h1><div class="cnblogs_code" style="border-width: 1px 1px 1px 5px; border-style: dashed dashed dashed solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(204, 204, 204) rgb(108, 226, 108); padding: 5px; overflow: auto; margin-top: 10px; margin-bottom: 10px; color: rgb(0, 0, 0); font-size: 10pt; line-height: 16.8px; font-family: 'Courier New' !important; background-position: initial initial; background-repeat: initial initial;"><pre style="margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: &quot;Courier New&quot; !important; font-size: 12px !important; max-width: 600px;">    element.addEventListener(‘click’, <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;">(e){<br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> …</span><br>    }, <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">false</span>);</pre></div><ol style="padding-left: 40px;"><li style="padding: 0px; list-style-type: decimal;">W3C绑定的优点<ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">该方法同时支持事件处理的捕获和冒泡阶段。事件阶段取决于addEventListener最后的参数设置：false (冒泡) 或 true (捕获)。</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">在事件处理函数内部，this关键字引用当前元素。</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">事件对象总是可以通过处理函数的第一个参数(e)捕获。</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">可以为同一个元素绑定你所希望的多个事件，同时并不会覆盖先前绑定的事件</li></ul></li><li style="padding: 0px; list-style-type: decimal;">W3C绑定的缺点</li><ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">IE不支持，你必须使用IE的attachEvent函数替代。</li></ul></ol><h1 style="font-size: 28px; margin-top: 8px; margin-bottom: 4px; padding: 5px; color: white; background-color: gray; line-height: 1.5;">IE方式</h1><div class="cnblogs_code" style="border-width: 1px 1px 1px 5px; border-style: dashed dashed dashed solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(204, 204, 204) rgb(108, 226, 108); padding: 5px; overflow: auto; margin-top: 10px; margin-bottom: 10px; color: rgb(0, 0, 0); font-size: 10pt; line-height: 16.8px; font-family: 'Courier New' !important; background-position: initial initial; background-repeat: initial initial;"><pre style="margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: &quot;Courier New&quot; !important; font-size: 12px !important; max-width: 600px;">    element.attachEvent(‘onclick’, <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;">(){<br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> …</span><br>    });</pre></div><ol style="padding-left: 40px;"><li style="padding: 0px; list-style-type: decimal;">IE方式的优点<ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">可以为同一个元素绑定你所希望的多个事件，同时并不会覆盖先前绑定的事件。</li></ul></li><li style="padding: 0px; list-style-type: decimal;">IE方式的缺点</li><ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">IE仅支持事件捕获的冒泡阶段</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">事件监听函数内的this关键字指向了window对象，而不是当前元素（IE的一个巨大缺点）</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">事件对象仅存在与window.event参数中</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">事件必须以ontype的形式命名，比如，onclick而非click</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">仅IE可用。你必须在非IE浏览器中使用W3C的addEventListener</li></ul></ol><h1 style="font-size: 28px; margin-top: 8px; margin-bottom: 4px; padding: 5px; color: white; background-color: gray; line-height: 1.5;">&nbsp;Dean Edwards的方案（addEvent/removeEvent库）</h1><div class="cnblogs_code" style="border-width: 1px 1px 1px 5px; border-style: dashed dashed dashed solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(204, 204, 204) rgb(108, 226, 108); padding: 5px; overflow: auto; margin-top: 10px; margin-bottom: 10px; color: rgb(0, 0, 0); font-size: 10pt; line-height: 16.8px; font-family: 'Courier New' !important; background-position: initial initial; background-repeat: initial initial;"><pre style="margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; word-wrap: break-word; font-family: &quot;Courier New&quot; !important; font-size: 12px !important; max-width: 600px;">   <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;"> addEvent(elementment, type, handler) {<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 为每个事件处理函数赋予一个独立的ID</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">if</span>(!handler.$$guid) handler.$$guid = addEvent.guid++<span style="font-size: 12px !important; line-height: 1.5 !important;">;<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 为元素建立一个事件类型的散列表</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">if</span>(!elementment.events) elementment.events =<span style="font-size: 12px !important; line-height: 1.5 !important;"> {};<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 为每对元素/事件建立一个事件处理函数的散列表</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">var</span> handlers =<span style="font-size: 12px !important; line-height: 1.5 !important;"> elementment.events[type];<br><br>        </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">if</span>(!<span style="font-size: 12px !important; line-height: 1.5 !important;">handlers) {<br>            handlers </span>= elementment.events[type] =<span style="font-size: 12px !important; line-height: 1.5 !important;"> {};<br>            </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 存储已有的事件处理函数(如果已存在一个)</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">if</span>(elementment[“on” +<span style="font-size: 12px !important; line-height: 1.5 !important;"> type]) {<br>                handlers[</span>0] = elementment[“on” +<span style="font-size: 12px !important; line-height: 1.5 !important;"> type];<br>            }<br>        }<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 在散列表中存储该事件函数</span><br>        handlers[handler.$$guid] =<span style="font-size: 12px !important; line-height: 1.5 !important;"> handler;<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 赋予一个全局事件处理函数来出来所有工作</span><br>        elementment[“on” + type] =<span style="font-size: 12px !important; line-height: 1.5 !important;"> handleEvent;<br>    }<br><br>    </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 创建独立ID的计数器</span><br>    addEvent.guid = 1<span style="font-size: 12px !important; line-height: 1.5 !important;">;<br><br>    </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;"> removeEvent(elementment, type, handler) {<br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 从散列表中删除事件处理函数</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">if</span>(elementment.events &amp;&amp;<span style="font-size: 12px !important; line-height: 1.5 !important;"> elementment.events[type]) {<br>            delementte elementment.events[type][handler.$$guid];<br>        }<br>    }<br><br>    </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;"> handleEvent(event) {<br>        </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">var</span> returnValue = <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">true</span><span style="font-size: 12px !important; line-height: 1.5 !important;">;<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 获取事件对象(IE使用全局的事件对象)</span><br>        event = event ||<span style="font-size: 12px !important; line-height: 1.5 !important;"> fixEvent(window.event);<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 获取事件处理函数散列表的引用</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">var</span> handlers = <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">this</span><span style="font-size: 12px !important; line-height: 1.5 !important;">.events[event.type];<br><br>        </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 依次执行每个事件处理函数</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">for</span>(<span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">var</span> i <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">in</span><span style="font-size: 12px !important; line-height: 1.5 !important;"> handlers) {<br>            </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">this</span>.$$handerEvent =<span style="font-size: 12px !important; line-height: 1.5 !important;"> handlers[i];<br>            </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">if</span>(<span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">this</span>.$$handlerEvent(event) ===<span style="font-size: 12px !important; line-height: 1.5 !important;"> fasle) {<br>                returnValue </span>= <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">false</span><span style="font-size: 12px !important; line-height: 1.5 !important;">;<br>            }<br>        }<br>        </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">return</span><span style="font-size: 12px !important; line-height: 1.5 !important;"> returnValue;<br>    }<br><br>    </span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;">//</span><span style="color: rgb(0, 128, 0); font-size: 12px !important; line-height: 1.5 !important;"> 增加一些IE事件对象缺乏的方法</span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;"> fixEvent(event) {<br>        event.preventDefault </span>=<span style="font-size: 12px !important; line-height: 1.5 !important;"> fixEvent.preventDefault;<br>        event.stopPropagation </span>=<span style="font-size: 12px !important; line-height: 1.5 !important;"> fixEvent.stopPropagation;<br>        </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">return</span><span style="font-size: 12px !important; line-height: 1.5 !important;"> event;<br>    }<br><br>    fixEvent.preventDefault </span>= <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;">() {<br>        </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">this</span>.returnValue = <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">false</span><span style="font-size: 12px !important; line-height: 1.5 !important;">;<br>    }<br><br>    fixEvent.stopPropagation </span>= <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">function</span><span style="font-size: 12px !important; line-height: 1.5 !important;">() {<br>        </span><span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">this</span>.cancelBubble = <span style="color: rgb(0, 0, 255); font-size: 12px !important; line-height: 1.5 !important;">true</span><span style="font-size: 12px !important; line-height: 1.5 !important;">;<br>    }<br>    </span></pre></div><ol style="padding-left: 40px;"><li style="padding: 0px; list-style-type: decimal;">addEvent的优点<ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">可以在所有浏览器中工作，就算是更古老无任何支持的浏览器</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">this关键字可以在所有的绑定函数中使用，指向的是当前元素</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">中和了所有防止浏览器默认行为和阻止事件冒泡的各种浏览器特定函数</li><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">不管浏览器类型，事件对象总是作为第一个对象传入</li></ul></li><li style="padding: 0px; list-style-type: decimal;">addEvent的缺点</li><ul style="list-style: none; margin: 10px 10px 10px 8px; padding: 0px;"><li style="background-image: url(&quot;&quot;); background-position: 0px 9px; background-repeat: no-repeat; padding: 0px 0px 0px 15px; list-style: none;">仅工作在冒泡阶段（因为它深入使用事件绑定的传统方式）<br><div style="color:gray"><small>来源：&nbsp;<a href="http://www.cnblogs.com/ninofocus/archive/2012/11/07/2758772.html" target="_blank" rel="external">http://www.cnblogs.com/ninofocus/archive/2012/11/07/2758772.html</a></small></div></li></ul></ol></div></div></body>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js-前端/" rel="tag">#-js -前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/17/JS除法、取模/" rel="next" title="JS除法、取模">
+                <i class="fa fa-chevron-left"></i> JS除法、取模
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/17/手风琴效果/" rel="prev" title="手风琴效果">
+                手风琴效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="阿炸" />
+          <p class="site-author-name" itemprop="name">阿炸</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mideng2" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/MomILU" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">JavaScript事件绑定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">传统方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">W3C方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">IE方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text"> Dean Edwards的方案（addEvent/removeEvent库）</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阿炸</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
